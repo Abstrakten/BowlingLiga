@@ -3,16 +3,21 @@ package svin.bowlingliga;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.Response;
+import com.android.volley.toolbox.StringRequest;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -25,6 +30,7 @@ public class BowlingLeagueStartActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bowling_league_start);
+        final TextView MMR = (TextView)findViewById(R.id.RatingText);
 
         Button regGameButton = (Button)findViewById(R.id.RegGameButton);
         regGameButton.setOnClickListener(new View.OnClickListener() {
@@ -53,26 +59,34 @@ public class BowlingLeagueStartActivity extends AppCompatActivity {
             }
         });
 
+        final String URL = "http://beer.mokote.dk/resources/api/getLeaderboard.php";
 
+        JsonArrayRequest req = new JsonArrayRequest(URL, new Response.Listener<JSONArray> () {
+            @Override
+            public void onResponse(JSONArray response) {
+                try {
+                    JSONObject obj = new JSONObject(response.getString(0));
+                    MMR.setText(obj.getString("MMR"));
 
-        JsonObjectRequest req = new JsonObjectRequest("http://beer.mokote.dk/resources/api/getLeaderboard.php",null,
-                new Response.Listener<JSONObject>(){
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            VolleyLog.v("Response:%n %s", response.toString(4));
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.e("Error: ", error.getMessage());
             }
         });
-        // add the request object to the queue to be executed
+
+// add the request object to the queue to be executed
         ApplicationController.getInstance().addToRequestQueue(req);
+
+// add the request object to the queue to be executed
+        ApplicationController.getInstance().addToRequestQueue(req);
+
+
 
     }
 
