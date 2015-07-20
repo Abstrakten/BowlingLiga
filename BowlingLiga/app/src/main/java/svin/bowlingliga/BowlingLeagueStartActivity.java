@@ -8,6 +8,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.Response;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.net.URL;
+
 
 public class BowlingLeagueStartActivity extends AppCompatActivity {
 
@@ -42,6 +52,28 @@ public class BowlingLeagueStartActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
+
+        JsonObjectRequest req = new JsonObjectRequest("http://beer.mokote.dk/resources/api/getLeaderboard.php",null,
+                new Response.Listener<JSONObject>(){
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            VolleyLog.v("Response:%n %s", response.toString(4));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.e("Error: ", error.getMessage());
+            }
+        });
+        // add the request object to the queue to be executed
+        ApplicationController.getInstance().addToRequestQueue(req);
+
     }
 
     @Override
