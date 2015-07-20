@@ -29,5 +29,17 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Se Rangliste"
+        android:id="@+id/ReadRankingsButton"
+        android:layout_below="@+id/RegTeamButton"
+        android:layout_marginTop="20dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/RegTeamButton"
+        android:layout_alignEnd="@+id/RegTeamButton" />
+
 
 </RelativeLayout>

@@ -33,6 +33,15 @@ public class BowlingLeagueStartActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        Button readRankingsButton = (Button) findViewById(R.id.ReadRankingsButton);
+        readRankingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(BowlingLeagueStartActivity.this, ReadRankingsActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

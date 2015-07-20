@@ -9,12 +9,7 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".BowlingLeagueStartActivity"
-            android:label="@string/app_name" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:label="@string/app_name">
         </activity>
         <activity
             android:name=".RegisterScoreActivity"
@@ -31,6 +26,23 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".BowlingLeagueStartActivity" />
+        </activity>
+        <activity
+            android:name=".ReadRankingsActivity"
+            android:label="@string/title_activity_read_rankings"
+            android:parentActivityName=".BowlingLeagueStartActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="svin.bowlingliga.BowlingLeagueStartActivity" />
+        </activity>
+        <activity
+            android:name=".LoginMenuActivity"
+            android:label="@string/title_activity_login_menu" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

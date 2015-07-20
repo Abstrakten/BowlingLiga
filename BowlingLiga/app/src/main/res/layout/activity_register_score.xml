@@ -7,5 +7,50 @@
     tools:context="svin.bowlingliga.RegisterScoreActivity">
 
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_height="fill_parent"
+        android:layout_width="fill_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/LeftTeamLayout"
+            android:layout_weight="1"
+            android:layout_height="fill_parent"
+            android:layout_width="fill_parent">
+
+            <Spinner
+                android:id="@+id/LeftTeamName"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:spinnerMode="dropdown"/>
+
+            <NumberPicker
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/LeftTeamScore"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/RightTeamLayout"
+            android:layout_weight="1"
+            android:layout_height="fill_parent"
+            android:layout_width="fill_parent">
+
+            <Spinner
+                android:id="@+id/RightTeamName"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:spinnerMode="dropdown"/>
+
+            <NumberPicker
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/RightTeamScore"/>
+
+        </LinearLayout>
+    </LinearLayout>
 
 </RelativeLayout>
