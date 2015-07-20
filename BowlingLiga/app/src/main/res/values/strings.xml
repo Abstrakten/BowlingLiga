@@ -7,4 +7,9 @@
     <string name="title_activity_register_team">RegisterTeamActivity</string>
     <string name="title_activity_read_rankings">ReadRankingsActivity</string>
     <string name="title_activity_login_menu">LoginMenuActivity</string>
+
+
+
+
+    <string name="seperator"> - </string>
 </resources>

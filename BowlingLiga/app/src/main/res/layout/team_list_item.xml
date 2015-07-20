@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+
+    android:layout_height="60dip">
+
+    <TextView
+        android:id="@+id/teamName"
+        android:layout_marginRight="10dp"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="Team name"
+        android:layout_gravity="center_vertical"
+        android:textAppearance="@android:style/TextAppearance.Medium" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:paddingRight="8dip"
+        android:paddingLeft="16dip"
+        android:layout_gravity="center_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/teamWins"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Wins" />
+
+        <TextView
+            android:layout_width="20dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/seperator"
+            android:singleLine="false" />
+
+        <TextView
+            android:id="@+id/teamLosses"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Losses" />
+
+    <RelativeLayout
+        android:orientation="horizontal"
+        android:paddingRight="8dip"
+        android:paddingLeft="16dip"
+        android:layout_gravity="center_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="right">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/teamRating"
+            android:text="Rating"
+            android:layout_alignParentRight="true" />
+    </RelativeLayout>
+
+
+
+
+
+    </LinearLayout>
+
+</LinearLayout>
