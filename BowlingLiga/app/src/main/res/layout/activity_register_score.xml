@@ -22,12 +22,19 @@
             android:gravity="center">
 
             <Spinner
-                android:id="@+id/LeftTeamName"
+                android:id="@+id/HomeFirstName"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:spinnerMode="dropdown"/>
+                android:spinnerMode="dialog"/>
+
+            <Spinner
+                android:id="@+id/HomeSecondName"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:spinnerMode="dialog"/>
 
             <NumberPicker
+                
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/LeftTeamScore"
@@ -44,10 +51,16 @@
             android:gravity="center">
 
             <Spinner
-                android:id="@+id/RightTeamName"
+                android:id="@+id/AwayFirstName"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:spinnerMode="dropdown"/>
+                android:spinnerMode="dialog"/>
+
+            <Spinner
+                android:id="@+id/AwaySecondName"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:spinnerMode="dialog"/>
 
             <NumberPicker
                 android:layout_width="wrap_content"

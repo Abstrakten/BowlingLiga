@@ -46,7 +46,7 @@ public class ReadRankingsActivity extends AppCompatActivity {
                         Player p = new Player(
                                 jObj.getInt("id"),
                                 jObj.getString("username"),
-                                jObj.getInt("MMR"));
+                                jObj.getInt("rating"));
 
                         playerList.add(p);
                     }
