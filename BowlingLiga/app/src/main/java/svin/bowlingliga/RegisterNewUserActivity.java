@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,7 +25,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class RegisterNewUserActivity extends ActionBarActivity {
+public class RegisterNewUserActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,14 +40,20 @@ public class RegisterNewUserActivity extends ActionBarActivity {
             public void onClick(View view) {
                 //regex for email ([a-z]|[A-Z]|[0-9]|\.)+@([a-z]|[A-Z]|[0-9]|\.)+\.([a-z]|[A-Z]|[0-9]|\.)+
                 // TODO add more checks for valid names/pass/mail
-                if (((EditText)findViewById(R.id.newPasswordText)).getText().toString().equals(((EditText)findViewById(R.id.newPasswordCheckText)).getText().toString())) {
+                if (((EditText)findViewById(R.id.newPasswordText)).getText().toString().equals(((EditText) findViewById(R.id.newPasswordCheckText)).getText().toString())) {
 
                     StringRequest req = new StringRequest(Request.Method.POST, RegUserURL, new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
                             // TODO add "wait while server derps" dialog box
+                            // TODO log user in directly from here
 
+                            Intent intent = new Intent();
 
+                            intent.putExtra("name", ((EditText)findViewById(R.id.newNameText)).getText().toString());
+                            intent.putExtra("pass", ((EditText)findViewById(R.id.newPasswordText)).getText().toString());
+
+                            setResult(RESULT_OK,intent);
 
                             finish();
                         }

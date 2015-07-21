@@ -30,6 +30,7 @@ public class LoginMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_menu);
 
+
         Button LoginButton = (Button)findViewById(R.id.LoginButton);
         LoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,7 +46,8 @@ public class LoginMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(LoginMenuActivity.this, RegisterNewUserActivity.class);
-                startActivity(intent);
+
+                startActivityForResult(intent, 1);
             }
         });
     }
@@ -73,9 +75,27 @@ public class LoginMenuActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode == 1) {
+            if(resultCode == RESULT_OK){
+                ((EditText) findViewById(R.id.LoginName)).setText(data.getStringExtra("name"));
+                ((EditText) findViewById(R.id.PassName)).setText(data.getStringExtra("pass"));
+
+                Intent intent = new Intent(LoginMenuActivity.this, BowlingLeagueStartActivity.class);
+
+                CheckCredentials(intent);
+
+            }
+        }
+    }//onActivityResult
+
     public void CheckCredentials(final Intent intent){
         final String URL = "http://beer.mokote.dk/resources/api/authUser.php";
         // Post params to be sent to the server
+
+
 
 
         // TODO make not stringRequest, but JSONRequest (perhaps)
