@@ -6,3 +6,7 @@ web/.idea/webResources.xml
 web/.idea/workspace.xml
 web/.idea/ØL.iml
 web/.idea/deployment.xml
+web/.idea/dataSources.ids
+web/.idea/dataSources.local.xml
+web/.idea/dataSources.xml
+web/.idea/sqldialects.xml
