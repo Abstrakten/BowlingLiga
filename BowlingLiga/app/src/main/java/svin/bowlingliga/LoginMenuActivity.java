@@ -1,5 +1,7 @@
 package svin.bowlingliga;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -10,7 +12,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.StringRequest;
+
 import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class LoginMenuActivity extends AppCompatActivity {
@@ -26,10 +36,7 @@ public class LoginMenuActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(LoginMenuActivity.this, BowlingLeagueStartActivity.class);
 
-
-                CheckCredentials(((EditText) findViewById(R.id.LoginName)).getText().toString(), ((EditText) findViewById(R.id.PassName)).getText().toString());
-
-                startActivity(intent);
+                CheckCredentials(intent);
             }
         });
     }
@@ -57,7 +64,77 @@ public class LoginMenuActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void CheckCredentials(String Name, String Pass){
-        System.out.println(Name + Pass);
+    public void CheckCredentials(final Intent intent){
+        final String URL = "http://beer.mokote.dk/resources/api/authUser.php";
+        // Post params to be sent to the server
+
+
+        // TODO make not stringRequest, but JSONRequest (perhaps)
+        StringRequest sr = new StringRequest(Request.Method.POST, "http://beer.mokote.dk/resources/api/authUser.php", new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                if(!response.equals("Username and/or password combination does not exist.")) {
+                    System.out.println(response);
+                    intent.putExtra("userinfo", response);
+                    startActivity(intent);
+                }else{
+                    AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(LoginMenuActivity.this);
+
+                    dlgAlert.setMessage("wrong password or username");
+                    dlgAlert.setTitle("Error Message...");
+                    dlgAlert.setPositiveButton("OK", null);
+                    dlgAlert.setCancelable(true);
+                    dlgAlert.create().show();
+
+                    dlgAlert.setPositiveButton("Ok",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.e("Error:" + error.getMessage());
+            }
+        }){
+            @Override
+            protected Map<String,String> getParams(){
+                Map<String,String> params = new HashMap<String, String>();
+                params.put("username",((EditText) findViewById(R.id.LoginName)).getText().toString());
+                params.put("password",((EditText) findViewById(R.id.PassName)).getText().toString());
+
+                return params;
+            }
+// Why Override?
+/*            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String,String> params = new HashMap<String, String>();
+                params.put("Content-Type","application/x-www-form-urlencoded");
+                return params;
+            }*/
+        };
+
+        ApplicationController.getInstance().addToRequestQueue(sr);
+
+
+/*        JsonObjectRequest req = new JsonObjectRequest(Request.Method.POST, URL, new JSONObject(params),
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        System.out.println(response);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.e("Error:" + error.getMessage(), error.getMessage());
+
+            }
+        });
+
+        // add the request object to the queue to be executed
+        ApplicationController.getInstance().addToRequestQueue(req);*/
     }
 }

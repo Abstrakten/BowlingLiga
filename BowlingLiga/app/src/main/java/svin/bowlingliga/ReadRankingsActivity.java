@@ -6,11 +6,20 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonArrayRequest;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import svin.bowlingliga.ListAdapter.TeamListAdapter;
-import svin.bowlingliga.Models.Team;
+import svin.bowlingliga.ListAdapter.PlayerListAdapter;
+import svin.bowlingliga.Models.Player;
 
 
 public class ReadRankingsActivity extends AppCompatActivity {
@@ -20,20 +29,46 @@ public class ReadRankingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_read_rankings);
 
-        ListView teamView = (ListView)findViewById(R.id.listView);
 
-        Team team = new Team("Svinene", 5, 2, 1000);
-        Team team1 = new Team("One-man army T", 0, 19999, -2);
-        Team team2 = new Team("Nerdboosters", 15, 0, 2000);
+        final String URL = "http://beer.mokote.dk/resources/api/getLeaderboard.php";
 
-        List<Team> teamList = new ArrayList<>();
+        JsonArrayRequest req = new JsonArrayRequest(URL, new Response.Listener<JSONArray> () {
+            @Override
+            public void onResponse(JSONArray response) {
+                try {
+                    List<Player> playerList = new ArrayList<>();
+                    for(int i = 0; i < response.length(); i++){
 
-        teamList.add(team);
-        teamList.add(team1);
-        teamList.add(team2);
+                        JSONObject jObj = new JSONObject(response.getString(i));
 
-        TeamListAdapter adapter = new TeamListAdapter(ReadRankingsActivity.this, teamList);
-        teamView.setAdapter(adapter);
+                        Player p = new Player(
+                                jObj.getInt("id"),
+                                jObj.getString("username"),
+                                jObj.getInt("MMR"));
+
+                        playerList.add(p);
+                    }
+                    ListView teamView = (ListView)findViewById(R.id.listView);
+                    PlayerListAdapter adapter = new PlayerListAdapter(ReadRankingsActivity.this, playerList);
+                    teamView.setAdapter(adapter);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.e("Error: ", error.getMessage());
+            }
+        });
+
+        // add the request object to the queue to be executed
+        ApplicationController.getInstance().addToRequestQueue(req);
+
+
+
 
     }
 

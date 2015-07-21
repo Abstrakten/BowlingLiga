@@ -6,7 +6,7 @@
     android:layout_height="60dip">
 
     <TextView
-        android:id="@+id/teamName"
+        android:id="@+id/playerName"
         android:layout_marginRight="10dp"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
@@ -25,7 +25,7 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/teamWins"
+            android:id="@+id/playerWins"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ellipsize="end"
@@ -40,7 +40,7 @@
             android:singleLine="false" />
 
         <TextView
-            android:id="@+id/teamLosses"
+            android:id="@+id/playerLosses"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Losses" />
@@ -57,7 +57,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/teamRating"
+            android:id="@+id/playerRating"
             android:text="Rating"
             android:layout_alignParentRight="true" />
     </RelativeLayout>

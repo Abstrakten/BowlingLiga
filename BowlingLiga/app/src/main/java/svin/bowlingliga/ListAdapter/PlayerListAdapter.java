@@ -9,31 +9,31 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import svin.bowlingliga.Models.Team;
+import svin.bowlingliga.Models.Player;
 import svin.bowlingliga.R;
 
 // Custom list adapter for the list of causes in order to implement a custom-made setup for each item
-public class TeamListAdapter extends BaseAdapter
+public class PlayerListAdapter extends BaseAdapter
 {
     private LayoutInflater mInflater;
-    private List<Team> teamList;
+    private List<Player> playerList;
 
-    public TeamListAdapter(Context context, List<Team> causes)
+    public PlayerListAdapter(Context context, List<Player> causes)
     {
         mInflater = LayoutInflater.from(context);
-        teamList = causes;
+        playerList = causes;
     }
 
     @Override
     public int getCount()
     {
-        return teamList.size();
+        return playerList.size();
     }
 
     @Override
     public Object getItem(int position)
     {
-        return teamList.get(position);
+        return playerList.get(position);
     }
 
     @Override
@@ -51,10 +51,10 @@ public class TeamListAdapter extends BaseAdapter
         {
             view = mInflater.inflate(R.layout.team_list_item, parent, false);
             holder = new ViewHolder();
-            holder.teamName = (TextView)view.findViewById(R.id.teamName);
-            holder.teamWins = (TextView)view.findViewById(R.id.teamWins);
-            holder.teamLosses = (TextView)view.findViewById(R.id.teamLosses);
-            holder.teamRating = (TextView)view.findViewById(R.id.teamRating);
+            holder.teamName = (TextView)view.findViewById(R.id.playerName);
+            holder.teamWins = (TextView)view.findViewById(R.id.playerWins);
+            holder.teamLosses = (TextView)view.findViewById(R.id.playerLosses);
+            holder.teamRating = (TextView)view.findViewById(R.id.playerRating);
             view.setTag(holder);
         } else
         {
@@ -62,12 +62,12 @@ public class TeamListAdapter extends BaseAdapter
             holder = (ViewHolder)view.getTag();
         }
 
-        Team team = teamList.get(position);
+        Player player = playerList.get(position);
 
-        holder.teamName.setText(team.getTeamName());
-        holder.teamWins.setText(String.valueOf(team.getTeamWins()));
-        holder.teamLosses.setText(String.valueOf(team.getTeamLosses()));
-        holder.teamRating.setText(String.valueOf(team.getTeamRating()));
+        holder.teamName.setText(player.getPlayerName());
+        holder.teamWins.setText(String.valueOf(player.getPlayerWins()));
+        holder.teamLosses.setText(String.valueOf(player.getPlayerLosses()));
+        holder.teamRating.setText(String.valueOf(player.getPlayerRating()));
 
 
         return view;
