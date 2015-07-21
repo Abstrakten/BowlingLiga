@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="svin.bowlingliga" >
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".ApplicationController"
@@ -12,19 +12,11 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".BowlingLeagueStartActivity"
-            android:label="@string/app_name">
+            android:label="@string/app_name" >
         </activity>
         <activity
             android:name=".RegisterScoreActivity"
             android:label="@string/title_activity_register_score_activiten"
-            android:parentActivityName=".BowlingLeagueStartActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".BowlingLeagueStartActivity" />
-        </activity>
-        <activity
-            android:name=".RegisterTeamActivity"
-            android:label="@string/title_activity_register_team"
             android:parentActivityName=".BowlingLeagueStartActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -47,5 +39,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".MatchHistoryActivity"
+            android:label="@string/title_activity_match_history"
+            android:parentActivityName=".BowlingLeagueStartActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="svin.bowlingliga.BowlingLeagueStartActivity" />
+        </activity>
     </application>
+
 </manifest>

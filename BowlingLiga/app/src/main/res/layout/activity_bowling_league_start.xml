@@ -29,73 +29,73 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/TeamsLayout"
+        android:id="@+id/userInfoLayout"
         android:layout_below="@+id/RatingLayout"
         android:layout_marginTop="10dp"
         android:layout_width="fill_parent"
-        android:layout_height="300dp">
-
-        <TextView
-            android:id="@+id/TeamsLabel"
-            android:text="Dine Hold:"
-            android:textSize="24sp"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content" />
-
-            <TextView
-                android:layout_below="@+id/TeamsLabel"
-                android:layout_marginTop="20dp"
-                android:text="TestHoldet1"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:layout_below="@+id/TeamsLabel"
-                android:layout_marginTop="50dp"
-                android:text="TestHoldet2"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:layout_below="@+id/TeamsLabel"
-                android:layout_marginTop="80dp"
-                android:text="TestHoldet3"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Opret Hold"
-            android:id="@+id/RegTeamButton"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="23dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_below="@id/TeamsLayout"
-        android:layout_width="fill_parent"
         android:layout_height="wrap_content">
 
-        <Button
-            android:layout_width="wrap_content"
+        <TextView
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Registrer Spil"
-            android:id="@+id/RegGameButton"/>
+            android:text="LOREM IPSUM FAGGOT"/>
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Se Rangliste"
-            android:id="@+id/ReadRankingsButton"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
 
     </RelativeLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/relativeLayout">
+
+        <RelativeLayout
+            android:layout_weight="1"
+            android:layout_alignParentLeft="true"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <Button
+                android:layout_margin="3dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Registrer Spil"
+                android:id="@+id/RegGameButton"/>
+
+            <Button
+                android:layout_margin="3dp"
+                android:layout_below="@id/RegGameButton"
+                android:text="Gamle Spil"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/ReadMatchHistoryButton" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_weight="1"
+            android:layout_alignParentRight="true"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <Button
+                android:layout_margin="3dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Se Rangliste"
+                android:id="@+id/ReadRankingsButton" />
+
+            <Button
+                android:layout_margin="3dp"
+                android:layout_below="@id/ReadRankingsButton"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Statistik"
+                android:id="@+id/ReadStatsButton" />
+
+        </RelativeLayout>
+    </LinearLayout>
 
 </RelativeLayout>
 

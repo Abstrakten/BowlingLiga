@@ -1,5 +1,6 @@
 package svin.bowlingliga;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -53,6 +54,7 @@ public class BowlingLeagueStartActivity extends AppCompatActivity {
         TextView MMR = (TextView)findViewById(R.id.RatingText);
         MMR.setText(String.valueOf(thisPlayer.getPlayerRating()));
 
+        setTitle("Ølbowling Liga - " + thisPlayer.getPlayerName());
 
 
 
@@ -65,20 +67,20 @@ public class BowlingLeagueStartActivity extends AppCompatActivity {
             }
         });
 
-        Button regTeamButton = (Button)findViewById(R.id.RegTeamButton);
-        regTeamButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(BowlingLeagueStartActivity.this, RegisterTeamActivity.class);
-                startActivity(intent);
-            }
-        });
-
         Button readRankingsButton = (Button) findViewById(R.id.ReadRankingsButton);
         readRankingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(BowlingLeagueStartActivity.this, ReadRankingsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        Button ReadMatchHistoryButton = (Button) findViewById(R.id.ReadMatchHistoryButton);
+        ReadMatchHistoryButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(BowlingLeagueStartActivity.this, MatchHistoryActivity.class);
                 startActivity(intent);
             }
         });
