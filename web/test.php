@@ -1,4 +1,4 @@
-<form action="resources/api/authUser.php" method="POST">
+<form action="resources/api/registerUser.php" method="POST">
 Navn: <input type="text" name="username">
 <br>
 Kodeord: <input type="text" name="password">
