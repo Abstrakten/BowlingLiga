@@ -13,4 +13,5 @@
 
     <string name="seperator"> - </string>
     <string name="title_activity_match_history">MatchHistoryActivity</string>
+    <string name="title_activity_register_new_user">RegisterNewUserActivity</string>
 </resources>

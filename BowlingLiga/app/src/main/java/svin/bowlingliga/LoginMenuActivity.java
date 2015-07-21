@@ -39,6 +39,15 @@ public class LoginMenuActivity extends AppCompatActivity {
                 CheckCredentials(intent);
             }
         });
+
+        Button NewUserButton = (Button)findViewById(R.id.newUserButton);
+        NewUserButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginMenuActivity.this, RegisterNewUserActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
 
@@ -70,7 +79,7 @@ public class LoginMenuActivity extends AppCompatActivity {
 
 
         // TODO make not stringRequest, but JSONRequest (perhaps)
-        StringRequest sr = new StringRequest(Request.Method.POST, "http://beer.mokote.dk/resources/api/authUser.php", new Response.Listener<String>() {
+        StringRequest sr = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 if(!response.equals("Username and/or password combination does not exist.")) {
@@ -79,7 +88,6 @@ public class LoginMenuActivity extends AppCompatActivity {
                     startActivity(intent);
                 }else{
                     AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(LoginMenuActivity.this);
-
                     dlgAlert.setMessage("wrong password or username");
                     dlgAlert.setTitle("Error Message...");
                     dlgAlert.setPositiveButton("OK", null);

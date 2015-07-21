@@ -46,7 +46,7 @@ public class BowlingLeagueStartActivity extends AppCompatActivity {
             thisPlayer = new Player(
                     jObj.getInt("id"),
                     jObj.getString("username"),
-                    jObj.getInt("mmr"));
+                    jObj.getInt("rating"));
         } catch (JSONException e) {
             e.printStackTrace();
         }

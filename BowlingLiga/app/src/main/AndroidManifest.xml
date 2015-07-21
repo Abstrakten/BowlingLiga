@@ -47,6 +47,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="svin.bowlingliga.BowlingLeagueStartActivity" />
         </activity>
+        <activity
+            android:name=".RegisterNewUserActivity"
+            android:label="@string/title_activity_register_new_user"
+            android:parentActivityName=".LoginMenuActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="svin.bowlingliga.LoginMenuActivity" />
+        </activity>
     </application>
 
 </manifest>

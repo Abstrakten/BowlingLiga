@@ -1,12 +1,22 @@
 package svin.bowlingliga;
 
+import android.app.AlertDialog;
 import android.app.Application;
+import android.content.DialogInterface;
 import android.text.TextUtils;
+import android.widget.EditText;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by AbstraktenPC on 20-07-2015.
@@ -92,5 +102,41 @@ public class ApplicationController extends Application {
             mRequestQueue.cancelAll(tag);
         }
     }
+
+    // TODO Consider making "sendServerPOST" function work
+    /*private String RegUserURL = "http://beer.mokote.dk/resources/api/registerUser.php";
+
+    public static enum Service {
+        REGUSER
+    }
+    
+    public String sendServerPOST(List<String> strings, Service url){
+        // TODO make not stringRequest, but JSONRequest (perhaps)
+
+
+
+        StringRequest req = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.e("Error:" + error.getMessage());
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("username", ((EditText) findViewById(R.id.LoginName)).getText().toString());
+                params.put("password", ((EditText) findViewById(R.id.PassName)).getText().toString());
+
+                return params;
+            }
+        }
+    }*/
 }
 

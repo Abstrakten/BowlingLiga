@@ -44,4 +44,13 @@
         android:layout_alignRight="@+id/PassName"
         android:layout_alignEnd="@+id/PassName" />
 
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Opret Ny Bruger"
+        android:id="@+id/newUserButton"
+        android:layout_below="@+id/LoginButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp" />
+
 </RelativeLayout>
