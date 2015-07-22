@@ -7,11 +7,9 @@
     <string name="title_activity_register_team">RegisterTeamActivity</string>
     <string name="title_activity_read_rankings">ReadRankingsActivity</string>
     <string name="title_activity_login_menu">LoginMenuActivity</string>
-
-
-
-
     <string name="seperator"> - </string>
+    <string name="ranking_label">Rangliste</string>
+    <string name="match_history_label">Historik</string>
     <string name="title_activity_match_history">MatchHistoryActivity</string>
     <string name="title_activity_register_new_user">RegisterNewUserActivity</string>
 </resources>

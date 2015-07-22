@@ -9,7 +9,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ranglisten"
+        android:text="@string/ranking_label"
         android:textSize="32sp"
         android:id="@+id/RankingLabel" />
 

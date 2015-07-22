@@ -18,10 +18,10 @@ public class PlayerListAdapter extends BaseAdapter
     private LayoutInflater mInflater;
     private List<Player> playerList;
 
-    public PlayerListAdapter(Context context, List<Player> causes)
+    public PlayerListAdapter(Context context, List<Player> players)
     {
         mInflater = LayoutInflater.from(context);
-        playerList = causes;
+        playerList = players;
     }
 
     @Override
