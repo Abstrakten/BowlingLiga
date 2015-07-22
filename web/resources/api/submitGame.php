@@ -61,7 +61,7 @@ else{
     }
     else{
         //echo 'Authentication successfull!';
-        echo "Authenticated successfully</br>";
+        //echo "Authenticated successfully</br>";
         $player1 = $_POST["player1"];     // team1
         $player2 = $_POST["player2"];     // team1
         $player3 = $_POST["player3"];     // team2

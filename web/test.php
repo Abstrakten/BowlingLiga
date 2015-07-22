@@ -1,7 +1,7 @@
 <?php
 ob_start();
-//$url = 'http://beer.mokote.dk/resources/api/submitGame.php';
-$url = 'http://127.0.0.1/beer/web/resources/api/submitGame.php';
+$url = 'http://beer.mokote.dk/resources/api/submitGame.php';
+//$url = 'http://127.0.0.1/beer/web/resources/api/submitGame.php';
 function runSubmitGameUnitTests(){
     testSubmitGamesInvalidUsername();
     testSubmitGamesInvalidPassword();
