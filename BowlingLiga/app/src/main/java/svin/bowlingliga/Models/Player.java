@@ -1,8 +1,6 @@
 package svin.bowlingliga.Models;
 
-/**
- * Created by Alexander on 20-07-2015.
- */
+
 public class Player {
     private int Id;
     private String playerName;

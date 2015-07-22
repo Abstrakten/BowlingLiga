@@ -45,26 +45,22 @@
             android:layout_height="wrap_content"
             android:text="Losses" />
 
-    <RelativeLayout
-        android:orientation="horizontal"
-        android:paddingRight="8dip"
-        android:paddingLeft="16dip"
-        android:layout_gravity="center_vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="right">
-
-        <TextView
+        <RelativeLayout
+            android:orientation="horizontal"
+            android:paddingRight="8dip"
+            android:paddingLeft="16dip"
+            android:layout_gravity="center_vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/playerRating"
-            android:text="Rating"
-            android:layout_alignParentRight="true" />
-    </RelativeLayout>
+            android:gravity="right">
 
-
-
-
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/playerRating"
+                android:text="Rating"
+                android:layout_alignParentRight="true" />
+        </RelativeLayout>
 
     </LinearLayout>
 
