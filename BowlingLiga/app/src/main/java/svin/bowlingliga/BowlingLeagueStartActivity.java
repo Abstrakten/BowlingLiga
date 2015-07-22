@@ -63,6 +63,8 @@ public class BowlingLeagueStartActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(BowlingLeagueStartActivity.this, RegisterScoreActivity.class);
+                intent.putExtra("username", getIntent().getStringExtra("username"));
+                intent.putExtra("password", getIntent().getStringExtra("password"));
                 startActivity(intent);
             }
         });

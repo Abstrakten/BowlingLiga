@@ -105,6 +105,8 @@ public class LoginMenuActivity extends AppCompatActivity {
                 if(!response.equals("Username and/or password combination does not exist.")) {
                     System.out.println(response);
                     intent.putExtra("userinfo", response);
+                    intent.putExtra("username", ((EditText) findViewById(R.id.LoginName)).getText().toString());
+                    intent.putExtra("password", ((EditText) findViewById(R.id.PassName)).getText().toString());
                     startActivity(intent);
                 }else{
                     AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(LoginMenuActivity.this);

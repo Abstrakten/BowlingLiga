@@ -1,26 +1,36 @@
 package svin.bowlingliga;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CursorAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.NumberPicker;
 import android.widget.Spinner;
 
+import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.StringRequest;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import svin.bowlingliga.ListAdapter.PlayerListAdapter;
 import svin.bowlingliga.Models.Player;
@@ -81,6 +91,7 @@ public class RegisterScoreActivity extends AppCompatActivity {
                     AwayFirst.setAdapter(adapter);
                     AwaySecond.setAdapter(adapter);
 
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -96,6 +107,52 @@ public class RegisterScoreActivity extends AppCompatActivity {
         // add the request object to the queue to be executed
         ApplicationController.getInstance().addToRequestQueue(req);
 
+
+        Button SubmitButton = (Button) findViewById(R.id.submitButton);
+        SubmitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                System.out.println( ((Player)((Spinner) findViewById(R.id.HomeFirstName)).getSelectedItem()).getPlayerName());
+
+                // TODO Input sanitation regMatch
+
+                StringRequest req = new StringRequest(Request.Method.POST, "http://beer.mokote.dk/resources/api/submitGame.php", new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        System.out.println(response);
+                        if(!response.equals("Success!")) {
+                            ErrorMessage(response);
+                        }else{
+
+                        }
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        VolleyLog.e("Error:" + error.getMessage());
+                    }
+                }){
+                    @Override
+                    protected Map<String,String> getParams(){
+                        Map<String,String> params = new HashMap<String, String>();
+                        params.put("hasTeam","FALSE");
+                        params.put("username", getIntent().getStringExtra("username"));
+                        params.put("password", getIntent().getStringExtra("password"));
+                        params.put("player1",((Player)((Spinner) findViewById(R.id.HomeFirstName)).getSelectedItem()).getPlayerName());
+                        params.put("player2",((Player)((Spinner) findViewById(R.id.HomeSecondName)).getSelectedItem()).getPlayerName());
+                        params.put("player3",((Player)((Spinner) findViewById(R.id.AwayFirstName)).getSelectedItem()).getPlayerName());
+                        params.put("player4",((Player)((Spinner) findViewById(R.id.AwaySecondName)).getSelectedItem()).getPlayerName());
+                        params.put("score1", String.valueOf(((NumberPicker) findViewById(R.id.LeftTeamScore)).getValue()));
+                        params.put("score2", String.valueOf(((NumberPicker) findViewById(R.id.RightTeamScore)).getValue()));
+
+                        return params;
+                    }
+                };
+
+                ApplicationController.getInstance().addToRequestQueue(req);
+            }
+        });
 
     }
 
@@ -116,5 +173,20 @@ public class RegisterScoreActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void ErrorMessage(String ErrMsg) {
+        AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(RegisterScoreActivity.this);
+        dlgAlert.setMessage(ErrMsg);
+        dlgAlert.setTitle("Error Message...");
+        dlgAlert.setPositiveButton("OK", null);
+        dlgAlert.setCancelable(true);
+        dlgAlert.create().show();
+
+        dlgAlert.setPositiveButton("Ok",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
     }
 }
