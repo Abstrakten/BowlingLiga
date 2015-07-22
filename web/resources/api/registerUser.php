@@ -13,8 +13,12 @@ if(!isset($_POST["username"]) && !isset($_POST["password"]) && !isset($_POST["em
 $name = mysqli_escape_string($conn, $_POST["username"]);
 $pass = mysqli_escape_string($conn, hash("sha256", $salt1.$_POST["password"].$salt2));
 $email = mysqli_escape_string($conn, $_POST["email"]);
-$sql = "INSERT INTO players (username, password, email)
-VALUES ('$name', '$pass', '$email')";
+
+date_default_timezone_set('Europe/Copenhagen');
+
+$time = date('Y-m-d H:i:s', time());
+$sql = "INSERT INTO players (username, password, email, registered_on)
+VALUES ('$name', '$pass', '$email', '$time')";
 
 if ($conn->query($sql) === TRUE) {
     echo "Success!";

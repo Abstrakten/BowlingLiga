@@ -37,8 +37,8 @@ if($_POST["hasTeams"] == 'TRUE'){
         $team1 = $team1["id"];
         $team2 = $team2["id"];
         // debug
-        //echo "Team 1 id is: " . $team1 . " </br>";
-        //echo "Team 2 id is: " . $team2 . "</br>";
+        echo "Team 1 id is: " . $team1 . " </br>";
+        echo "Team 2 id is: " . $team2 . "</br>";
         if(empty($team1) || empty($team2)){
             die("One of the teams does not exist.</br>");
         }
