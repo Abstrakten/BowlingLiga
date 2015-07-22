@@ -7,12 +7,12 @@ function runSubmitGameUnitTests(){
     testSubmitGamesInvalidPassword();
     testSubmitGamesWithTeamsTeam1Bad();
     testSubmitGamesWithTeamsTeam2Bad();
-    testSubmitGamesWithTeamsGood();
+    testSubmitGamesWithTeamsGood();             // One game entry
     testSubmitGamesNoTeamsPlayer1Bad();
     testSubmitGamesNoTeamsPlayer2Bad();
     testSubmitGamesNoTeamsPlayer3Bad();
     testSubmitGamesNoTeamsPlayer4Bad();
-    testSubmitGamesNoTeamsAllPlayersGood();
+    testSubmitGamesNoTeamsAllPlayersGood();     // two game entry
 }
 function testSubmitGamesInvalidUsername(){
     echo "Testing for invalid username...</br>";
@@ -143,12 +143,12 @@ function testSubmitGamesWithTeamsTeam2Bad(){
     echo $result . "</br>";
 }
 function testSubmitGamesNoTeamsPlayer1Bad(){
-    echo "Testing No teams bad</br>";
+    echo "Testing No teams player 1 bad </br>";
     global $url;
     $data = array(
         'username' => 'test2',
         'password' => 'test2',
-        'player1' => 'svin',
+        'player1' => 'nonexistant',
         'player2' => 'fedesvin',
         'player3' => 'Hotdogfun',
         'player4' => 'four',
@@ -171,7 +171,7 @@ function testSubmitGamesNoTeamsPlayer1Bad(){
     echo $result . "</br>";
 }
 function testSubmitGamesNoTeamsPlayer2Bad(){
-    echo "Testing No teams bad</br>";
+    echo "Testing No teams player 2 bad</br>";
     global $url;
     $data = array(
         'username' => 'test2',
@@ -199,7 +199,7 @@ function testSubmitGamesNoTeamsPlayer2Bad(){
     echo $result . "</br>";
 }
 function testSubmitGamesNoTeamsPlayer3Bad(){
-    echo "Testing No teams bad</br>";
+    echo "Testing No teams player 3 bad</br>";
     global $url;
     $data = array(
         'username' => 'test2',
@@ -227,7 +227,7 @@ function testSubmitGamesNoTeamsPlayer3Bad(){
     echo $result . "</br>";
 }
 function testSubmitGamesNoTeamsPlayer4Bad(){
-    echo "Testing No teams bad</br>";
+    echo "Testing No teams player 4 bad</br>";
     global $url;
     $data = array(
         'username' => 'test2',

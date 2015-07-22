@@ -74,12 +74,13 @@ else{
         $player4 = $conn->query("SELECT id FROM players WHERE username = '$player4' ")->fetch_assoc()["id"];
 
         // Debug
-        //var_dump("player1 is " . $player1) ."\n";
-        //var_dump("player2 is " . $player2). "\n";
-        //var_dump("player3 is " . $player3). "\n";
-        //var_dump("player4 is " . $player4). "\n";
-
-        if ($player1 === FALSE || $player2 === FALSE || $player3 === FALSE || $player4 === FALSE){
+        //var_dump("player1 is " . $player1) ."</br>";
+        //var_dump("player2 is " . $player2). "</br>";
+        //var_dump("player3 is " . $player3). "</br>";
+        //var_dump("player4 is " . $player4). "</br>";
+        // TODO: fix method of submission, so that one team can be selected by player an other team can be selected as
+        // Premade team.
+        if (empty($player1) || empty($player2) || empty($player3) || empty($player4)){
             die("one of the players does not exist.</br>");
         }
         // Try to find existing teams based on player ids
@@ -87,21 +88,21 @@ else{
                     FROM teams
                     WHERE (player1 = '$player1' AND player2 = '$player2')
                     OR (player1 = '$player2' AND player2 = '$player1')");
-        if(teamId1 === FALSE){
+        if($teamId1 === FALSE){
             die("No existing teams exist for player with id " . $player1 . " and " . $player2);
         }
         else {
-            $teamId1 = $teamId1->fetch_assoc()["id"];
+            $teamId1 = $teamId1->fetch_assoc()['id'];
         }
         $teamId2 = $conn->query("SELECT id
                     FROM teams
                     WHERE (player1 = '$player3' AND player2 = '$player4')
                     OR (player1 = '$player4' AND player2 = '$player3')");
-        if(teamId2 === FALSE){
+        if($teamId2 === FALSE){
             die("No existing teams exist for player with id " . $player3 . " and " . $player4);
         }
         else {
-            $teamId2 = $teamId2->fetch_assoc()["id"];
+            $teamId2 = $teamId2->fetch_assoc()['id'];
         }
         // Debug
         //var_dump("teamId1 is ". $teamId1) ;
