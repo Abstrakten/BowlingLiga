@@ -11,6 +11,7 @@
 		}
 		$currentUser = $result->fetch_assoc();
 		if(hash("sha256", $salt1.$pass.$salt2) == $currentUser["password"]){
+			header('Content-Type: application/json');
 			return TRUE;
 		}
 		else{

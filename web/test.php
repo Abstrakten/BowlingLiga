@@ -1,16 +1,22 @@
 <?php
 ob_start();
+//$url = 'http://beer.mokote.dk/resources/api/submitGame.php';
+$url = 'http://127.0.0.1/beer/web/resources/api/submitGame.php';
 function runSubmitGameUnitTests(){
     testSubmitGamesInvalidUsername();
     testSubmitGamesInvalidPassword();
     testSubmitGamesWithTeamsTeam1Bad();
     testSubmitGamesWithTeamsTeam2Bad();
     testSubmitGamesWithTeamsGood();
-    testSubmitGamesNoTeamsBad();
+    testSubmitGamesNoTeamsPlayer1Bad();
+    testSubmitGamesNoTeamsPlayer2Bad();
+    testSubmitGamesNoTeamsPlayer3Bad();
+    testSubmitGamesNoTeamsPlayer4Bad();
+    testSubmitGamesNoTeamsAllPlayersGood();
 }
 function testSubmitGamesInvalidUsername(){
     echo "Testing for invalid username...</br>";
-    $url = 'http://beer.mokote.dk/resources/api/submitGame.php';
+    global $url;
     $data = array(
         'username' => 'a',
         'password' => 'b',
@@ -36,7 +42,7 @@ function testSubmitGamesInvalidUsername(){
 }
 function testSubmitGamesInvalidPassword(){
     echo "Testing for VALID username with invalid password...</br>";
-    $url = 'http://beer.mokote.dk/resources/api/submitGame.php';
+    global $url;
     $data = array(
         'username' => 'test2',
         'password' => '1234',
@@ -61,12 +67,13 @@ function testSubmitGamesInvalidPassword(){
     echo $result . "</br>";
 }
 function testSubmitGamesWithTeamsGood(){
-    $url = 'http://beer.mokote.dk/resources/api/submitGame.php';
+    echo "Testing with valid teams</br>";
+    global $url;
     $data = array(
         'username' => 'test2',
         'password' => 'test2',
-        'team1' => 'svin',
-        'team2' => 'nerdboosters',
+        'team1' => 'deadbeats',
+        'team2' => 'nigger faggets',
         'score1' => '5',
         'score2' => '5',
         'hasTeams' => 'TRUE',
@@ -83,11 +90,11 @@ function testSubmitGamesWithTeamsGood(){
     $context  = stream_context_create($options);
     $result = file_get_contents($url, false, $context);
 
-    var_dump($result);
+    echo $result . "</br>";
 }
 function testSubmitGamesWithTeamsTeam1Bad(){
     echo "Testing for invalid team 1...</br>";
-    $url = 'http://beer.mokote.dk/resources/api/submitGame.php';
+    global $url;
     $data = array(
         'username' => 'test2',
         'password' => 'test2',
@@ -111,12 +118,12 @@ function testSubmitGamesWithTeamsTeam1Bad(){
 }
 function testSubmitGamesWithTeamsTeam2Bad(){
     echo "Testing for invalid team 2...</br>";
-    $url = 'http://beer.mokote.dk/resources/api/submitGame.php';
+    global $url;
     $data = array(
         'username' => 'test2',
         'password' => 'test2',
         'team1' => 'nerdboosters',
-        'team2' => 'wrongapp',
+        'team2' => 'wrongteam',
         'score1' => '5',
         'score2' => '5',
         'hasTeams' => 'TRUE',
@@ -135,9 +142,9 @@ function testSubmitGamesWithTeamsTeam2Bad(){
 
     echo $result . "</br>";
 }
-function testSubmitGamesNoTeamsGood(){
-    echo "Testing No teams good</br>";
-    $url = 'http://beer.mokote.dk/resources/api/submitGame.php';
+function testSubmitGamesNoTeamsPlayer1Bad(){
+    echo "Testing No teams bad</br>";
+    global $url;
     $data = array(
         'username' => 'test2',
         'password' => 'test2',
@@ -163,9 +170,93 @@ function testSubmitGamesNoTeamsGood(){
 
     echo $result . "</br>";
 }
-function testSubmitGamesNoTeamsBad(){
+function testSubmitGamesNoTeamsPlayer2Bad(){
     echo "Testing No teams bad</br>";
-    $url = 'http://beer.mokote.dk/resources/api/submitGame.php';
+    global $url;
+    $data = array(
+        'username' => 'test2',
+        'password' => 'test2',
+        'player1' => 'svin',
+        'player2' => 'nonexistantplayer',
+        'player3' => 'Hotdogfun',
+        'player4' => 'four',
+        'score1' => '1234',
+        'score2' => '5678',
+        'hasTeams' => 'FALSE',
+    );
+
+// use key 'http' even if you send the request to https://...
+    $options = array(
+        'http' => array(
+            'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+            'method'  => 'POST',
+            'content' => http_build_query($data),
+        ),
+    );
+    $context  = stream_context_create($options);
+    $result = file_get_contents($url, false, $context);
+
+    echo $result . "</br>";
+}
+function testSubmitGamesNoTeamsPlayer3Bad(){
+    echo "Testing No teams bad</br>";
+    global $url;
+    $data = array(
+        'username' => 'test2',
+        'password' => 'test2',
+        'player1' => 'svin',
+        'player2' => 'fedesvin',
+        'player3' => 'nonexistantplayer',
+        'player4' => 'four',
+        'score1' => '1234',
+        'score2' => '5678',
+        'hasTeams' => 'FALSE',
+    );
+
+// use key 'http' even if you send the request to https://...
+    $options = array(
+        'http' => array(
+            'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+            'method'  => 'POST',
+            'content' => http_build_query($data),
+        ),
+    );
+    $context  = stream_context_create($options);
+    $result = file_get_contents($url, false, $context);
+
+    echo $result . "</br>";
+}
+function testSubmitGamesNoTeamsPlayer4Bad(){
+    echo "Testing No teams bad</br>";
+    global $url;
+    $data = array(
+        'username' => 'test2',
+        'password' => 'test2',
+        'player1' => 'svin',
+        'player2' => 'fedesvin',
+        'player3' => 'Hotdogfun',
+        'player4' => 'nonexistantplayer',
+        'score1' => '1234',
+        'score2' => '5678',
+        'hasTeams' => 'FALSE',
+    );
+
+// use key 'http' even if you send the request to https://...
+    $options = array(
+        'http' => array(
+            'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+            'method'  => 'POST',
+            'content' => http_build_query($data),
+        ),
+    );
+    $context  = stream_context_create($options);
+    $result = file_get_contents($url, false, $context);
+
+    echo $result . "</br>";
+}
+function testSubmitGamesNoTeamsAllPlayersGood(){
+    echo "Testing no teams, all players good</br>";
+    global $url;
     $data = array(
         'username' => 'test2',
         'password' => 'test2',
