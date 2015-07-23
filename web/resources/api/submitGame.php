@@ -37,13 +37,16 @@ if($_POST["hasTeams"] == 'TRUE'){
         $team1 = $team1["id"];
         $team2 = $team2["id"];
         // debug
-        echo "Team 1 id is: " . $team1 . " </br>";
-        echo "Team 2 id is: " . $team2 . "</br>";
+        // echo "Team 1 id is: " . $team1 . " </br>";
+        // echo "Team 2 id is: " . $team2 . "</br>";
         if(empty($team1) || empty($team2)){
             die("One of the teams does not exist.</br>");
+            // TODO: Create a new dummy team
         }
-        $sql = "INSERT INTO games (team1, team2, score1, score2)
-                VALUES ('$team1', '$team2', '$score1', '$score2')";
+        date_default_timezone_set('Europe/Copenhagen');
+        $time = date('Y-m-d H:i:s', time());
+        $sql = "INSERT INTO games (team1, team2, score1, score2, played_on)
+                VALUES ('$team1', '$team2', '$score1', '$score2', '$time')";
 
         if ($conn->query($sql) === TRUE) {
             echo "Success!";
@@ -88,7 +91,7 @@ else{
                     FROM teams
                     WHERE (player1 = '$player1' AND player2 = '$player2')
                     OR (player1 = '$player2' AND player2 = '$player1')");
-        if($teamId1 === FALSE){
+        if(empty($teamId1)){
             die("No existing teams exist for player with id " . $player1 . " and " . $player2);
         }
         else {
@@ -98,7 +101,7 @@ else{
                     FROM teams
                     WHERE (player1 = '$player3' AND player2 = '$player4')
                     OR (player1 = '$player4' AND player2 = '$player3')");
-        if($teamId2 === FALSE){
+        if(empty($teamId2)){
             die("No existing teams exist for player with id " . $player3 . " and " . $player4);
         }
         else {

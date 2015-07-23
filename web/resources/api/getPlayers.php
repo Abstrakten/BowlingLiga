@@ -1,11 +1,13 @@
 <table>
     <tr>
         <th>id</th>
-        <th>team 1</th>
-        <th>team 2</th>
-        <th>score 1</th>
-        <th>score 2</th>
-        <th>played on</th>
+        <th>username</th>
+        <th>email</th>
+        <th>phone</th>
+        <th>beersdrunk</th>
+        <th>gamesplayed</th>
+        <th>rating</th>
+        <th>registered_on</th>
     </tr>
 <?php
 	require_once '../dbconfig.php';
@@ -13,7 +15,7 @@
 	if($conn->connect_error){
         die("Connect failed: " . $conn->connect_error);
     }
-	$sql = "SELECT * FROM games ORDER BY played_on DESC";
+	$sql = "SELECT * FROM players ORDER BY registered_on DESC";
 	$result = $conn->query($sql);
 	if($result->num_rows > 0){
         $i = 0;
@@ -21,11 +23,13 @@
         while ($row = $result->fetch_assoc() ){
             echo "<tr>
             <td>" .$row['id'] ."</td>
-            <td>" .$row['team1'] ."</td>
-            <td>" .$row['team2'] ."</td>
-            <td>" .$row['score1'] ."</td>
-            <td>" .$row['score2'] ."</td>
-            <td>" .$row['played_on'] ."</td>
+            <td>" .$row['username'] ."</td>
+            <td>" .$row['email'] ."</td>
+            <td>" .$row['phone'] ."</td>
+            <td>" .$row['beersdrunk'] ."</td>
+            <td>" .$row['gamesplayed'] ."</td>
+            <td>" .$row['rating'] ."</td>
+            <td>" .$row['registered_on'] ."</td>
             </tr>";
             //$data[] = json_encode($row);
         }
@@ -35,3 +39,5 @@
         echo "0 results";
     }
 	$conn->close();
+?>
+</table>

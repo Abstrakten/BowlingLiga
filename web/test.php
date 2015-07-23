@@ -1,7 +1,7 @@
 <?php
 ob_start();
 //$url = 'http://beer.mokote.dk/resources/api/submitGame.php';
-$url = 'http://127.0.0.1/beer/web/resources/api/submitGame.php';
+$url = 'http://127.0.0.1/beer/web/resources/api/getMatchHistory.php';
 function runSubmitGameUnitTests(){
     testSubmitGamesInvalidUsername();
     testSubmitGamesInvalidPassword();
@@ -282,5 +282,275 @@ function testSubmitGamesNoTeamsAllPlayersGood(){
 
     echo $result . "</br>";
 }
-runSubmitGameUnitTests();
-?>
+//runSubmitGameUnitTests();
+function runRegisterTeamTests(){
+    testRegisterTeamPlayer1Bad();
+}
+function testRegisterTeamPlayer1Bad(){
+    echo "TESTING: player1 does not exist.</br>";
+    global $url;
+    $data = array(
+        'username' => 'test2',
+        'password' => 'test2',
+        'player1' => 'svin',
+        'player2' => 'fedesvin',
+        'player3' => 'Hotdogfun',
+        'player4' => 'four',
+        'score1' => '1234',
+        'score2' => '5678',
+        'hasTeams' => 'FALSE',
+    );
+
+// use key 'http' even if you send the request to https://...
+    $options = array(
+        'http' => array(
+            'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+            'method'  => 'POST',
+            'content' => http_build_query($data),
+        ),
+    );
+    $context  = stream_context_create($options);
+    $result = file_get_contents($url, false, $context);
+
+    echo $result . "</br>";
+}
+function testRegisterTeamPlayer2Bad(){
+    echo "TESTING: player 2 does not exist.</br>";
+    global $url;
+    $data = array(
+        'username' => 'test2',
+        'password' => 'test2',
+        'player1' => 'svin',
+        'player2' => 'fedesvin',
+        'player3' => 'Hotdogfun',
+        'player4' => 'four',
+        'score1' => '1234',
+        'score2' => '5678',
+        'hasTeams' => 'FALSE',
+    );
+
+// use key 'http' even if you send the request to https://...
+    $options = array(
+        'http' => array(
+            'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+            'method'  => 'POST',
+            'content' => http_build_query($data),
+        ),
+    );
+    $context  = stream_context_create($options);
+    $result = file_get_contents($url, false, $context);
+
+    echo $result . "</br>";
+}
+function testRegisterTeamNameTaken(){
+    echo "TESTING: Team name already exists.</br>";
+    global $url;
+    $data = array(
+        'username' => 'test2',
+        'password' => 'test2',
+        'player1' => 'svin',
+        'player2' => 'fedesvin',
+        'player3' => 'Hotdogfun',
+        'player4' => 'four',
+        'score1' => '1234',
+        'score2' => '5678',
+        'hasTeams' => 'FALSE',
+    );
+
+// use key 'http' even if you send the request to https://...
+    $options = array(
+        'http' => array(
+            'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+            'method'  => 'POST',
+            'content' => http_build_query($data),
+        ),
+    );
+    $context  = stream_context_create($options);
+    $result = file_get_contents($url, false, $context);
+
+    echo $result . "</br>";
+}
+function testRegisterTeamInvalidUsername(){
+    echo "Testing no teams, all players good</br>";
+    global $url;
+    $data = array(
+        'username' => 'test2',
+        'password' => 'test2',
+        'player1' => 'svin',
+        'player2' => 'fedesvin',
+        'player3' => 'Hotdogfun',
+        'player4' => 'four',
+        'score1' => '1234',
+        'score2' => '5678',
+        'hasTeams' => 'FALSE',
+    );
+
+// use key 'http' even if you send the request to https://...
+    $options = array(
+        'http' => array(
+            'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+            'method'  => 'POST',
+            'content' => http_build_query($data),
+        ),
+    );
+    $context  = stream_context_create($options);
+    $result = file_get_contents($url, false, $context);
+
+    echo $result . "</br>";
+}
+function testRegisterTeamInvalidPassword(){
+    echo "Testing no teams, all players good</br>";
+    global $url;
+    $data = array(
+        'username' => 'test2',
+        'password' => 'test2',
+        'player1' => 'svin',
+        'player2' => 'fedesvin',
+        'player3' => 'Hotdogfun',
+        'player4' => 'four',
+        'score1' => '1234',
+        'score2' => '5678',
+        'hasTeams' => 'FALSE',
+    );
+
+// use key 'http' even if you send the request to https://...
+    $options = array(
+        'http' => array(
+            'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+            'method'  => 'POST',
+            'content' => http_build_query($data),
+        ),
+    );
+    $context  = stream_context_create($options);
+    $result = file_get_contents($url, false, $context);
+
+    echo $result . "</br>";
+}
+function testRegisterTeamSubmitterNotPlayer(){
+    echo "Testing no teams, all players good</br>";
+    global $url;
+    $data = array(
+        'username' => 'test2',
+        'password' => 'test2',
+        'player1' => 'svin',
+        'player2' => 'fedesvin',
+        'player3' => 'Hotdogfun',
+        'player4' => 'four',
+        'score1' => '1234',
+        'score2' => '5678',
+        'hasTeams' => 'FALSE',
+    );
+
+// use key 'http' even if you send the request to https://...
+    $options = array(
+        'http' => array(
+            'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+            'method'  => 'POST',
+            'content' => http_build_query($data),
+        ),
+    );
+    $context  = stream_context_create($options);
+    $result = file_get_contents($url, false, $context);
+
+    echo $result . "</br>";
+}
+function testRegisterTeamAllGood(){
+    echo "Testing no teams, all players good</br>";
+    global $url;
+    $data = array(
+        'username' => 'test2',
+        'password' => 'test2',
+        'player1' => 'svin',
+        'player2' => 'fedesvin',
+        'player3' => 'Hotdogfun',
+        'player4' => 'four',
+        'score1' => '1234',
+        'score2' => '5678',
+        'hasTeams' => 'FALSE',
+    );
+
+// use key 'http' even if you send the request to https://...
+    $options = array(
+        'http' => array(
+            'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+            'method'  => 'POST',
+            'content' => http_build_query($data),
+        ),
+    );
+    $context  = stream_context_create($options);
+    $result = file_get_contents($url, false, $context);
+
+    echo $result . "</br>";
+}
+function testRegisterTeamPlayerTeamAlreadyExists(){
+    echo "Testing no teams, all players good</br>";
+    global $url;
+    $data = array(
+        'username' => 'test2',
+        'password' => 'test2',
+        'player1' => 'svin',
+        'player2' => 'fedesvin',
+        'player3' => 'Hotdogfun',
+        'player4' => 'four',
+        'score1' => '1234',
+        'score2' => '5678',
+        'hasTeams' => 'FALSE',
+    );
+
+// use key 'http' even if you send the request to https://...
+    $options = array(
+        'http' => array(
+            'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+            'method'  => 'POST',
+            'content' => http_build_query($data),
+        ),
+    );
+    $context  = stream_context_create($options);
+    $result = file_get_contents($url, false, $context);
+
+    echo $result . "</br>";
+}
+//runRegisterTeamTests();
+function runGetMatchHistoryTests(){
+    // Run all tests
+}
+function testGetMatchHistoryInvalidPlayerId(){
+    echo "TESTING: invalid player name</br>";
+    global $url;
+    $data = array(
+        'name' => 'test2',
+    );
+
+// use key 'http' even if you send the request to https://...
+    $options = array(
+        'http' => array(
+            'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+            'method'  => 'POST',
+            'content' => http_build_query($data),
+        ),
+    );
+    $context  = stream_context_create($options);
+    $result = file_get_contents($url, false, $context);
+
+    echo $result . "</br>";
+}
+function testGetMatchHistoryGood(){
+    echo "TESTING: player1 does not exist.</br>";
+    global $url;
+    $data = array(
+        'name' => 'svin',
+    );
+
+// use key 'http' even if you send the request to https://...
+    $options = array(
+        'http' => array(
+            'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+            'method'  => 'POST',
+            'content' => http_build_query($data),
+        ),
+    );
+    $context  = stream_context_create($options);
+    $result = file_get_contents($url, false, $context);
+
+    echo $result . "</br>";
+}
