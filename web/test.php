@@ -1,7 +1,7 @@
 <?php
 ob_start();
-//$url = 'http://beer.mokote.dk/resources/api/submitGame.php';
-$url = 'http://127.0.0.1/beer/web/resources/api/getMatchHistory.php';
+$url = 'http://beer.mokote.dk/resources/api/getMatchHistory.php';
+//$url = 'http://127.0.0.1/beer/web/resources/api/getMatchHistory.php';
 function runSubmitGameUnitTests(){
     testSubmitGamesInvalidUsername();
     testSubmitGamesInvalidPassword();
@@ -512,13 +512,14 @@ function testRegisterTeamPlayerTeamAlreadyExists(){
 }
 //runRegisterTeamTests();
 function runGetMatchHistoryTests(){
-    // Run all tests
+    testGetMatchHistoryInvalidPlayerId();
+    testGetMatchHistoryGood();
 }
 function testGetMatchHistoryInvalidPlayerId(){
     echo "TESTING: invalid player name</br>";
     global $url;
     $data = array(
-        'name' => 'test2',
+        'id' => '9999999999999',
     );
 
 // use key 'http' even if you send the request to https://...
@@ -535,10 +536,10 @@ function testGetMatchHistoryInvalidPlayerId(){
     echo $result . "</br>";
 }
 function testGetMatchHistoryGood(){
-    echo "TESTING: player1 does not exist.</br>";
+    echo "TESTING: Good test. Should return JSON array.</br>";
     global $url;
     $data = array(
-        'name' => 'svin',
+        'id' => '1',
     );
 
 // use key 'http' even if you send the request to https://...
@@ -554,3 +555,4 @@ function testGetMatchHistoryGood(){
 
     echo $result . "</br>";
 }
+runGetMatchHistoryTests();
