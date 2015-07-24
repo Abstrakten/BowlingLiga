@@ -1,60 +1,117 @@
 package svin.bowlingliga;
 
+import android.app.AlertDialog;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.StringRequest;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import svin.bowlingliga.ListAdapter.MatchHistoryListAdapter;
+import svin.bowlingliga.ListAdapter.PlayerListAdapter;
 import svin.bowlingliga.Models.Match;
 import svin.bowlingliga.Models.Player;
 
 
-public class MatchHistoryActivity extends ActionBarActivity {
+public class MatchHistoryActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_match_history);
 
-        ListView historyList = (ListView)findViewById(R.id.matchHistoryListView);
-
-        List<Player> homeTeamList = new ArrayList<>();
-        List<Player> awayTeamList = new ArrayList<>();
-
-        Player player1 = new Player(1, "Kasper T", 500);
-        Player player2 = new Player(2, "Luffe", 500);
-        Player player3 = new Player(3, "Svindreas", 500);
-        Player player4 = new Player(4, "Pro l33t alekon the 3rd", 500);
-
-        homeTeamList.add(player1);
-        homeTeamList.add(player2);
-        awayTeamList.add(player3);
-        awayTeamList.add(player4);
+        final ListView historyList = (ListView) findViewById(R.id.matchHistoryListView);
 
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 
         Calendar cal = Calendar.getInstance();
         Date date = cal.getTime();
 
-        Match match = new Match(date, 2, 5, homeTeamList, awayTeamList);
-        Match match2 = new Match(date, 2, 5, awayTeamList, homeTeamList);
-        List<Match> matchList = new ArrayList<>();
-        matchList.add(match);
-        matchList.add(match2);
+        StringRequest req = new StringRequest(Request.Method.POST, "http://beer.mokote.dk/resources/api/getMatchHistory.php", new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                System.out.println(response); //Debugging
 
-        MatchHistoryListAdapter adapter = new MatchHistoryListAdapter(MatchHistoryActivity.this, matchList);
-        historyList.setAdapter(adapter);
+                if(!response.equals("0 results")) {
+
+                    JSONArray jArr;
+
+                    List<Match> matchList = new ArrayList<>();
+                    try {
+                        jArr = new JSONArray(response);
+
+
+                        for (int i = 0; i < jArr.length(); i++) {
+
+                            JSONObject jObj = new JSONObject(jArr.getString(i));
+
+                            Match m = new Match(
+                                    new Date(),
+                                    jObj.getInt("score1"),
+                                    jObj.getInt("score2"),
+                                    Arrays.asList(new Player(99991, "DummyPlayer1", 1501), new Player(99992, "DummyPlayer2", 1502)),
+                                    Arrays.asList(new Player(99993, "DummyPlayer3", 1503), new Player(99994, "DummyPlayer4", 1504))
+                            );
+
+                            matchList.add(m);
+                        }
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                    MatchHistoryListAdapter adapter = new MatchHistoryListAdapter(MatchHistoryActivity.this, matchList);
+                    historyList.setAdapter(adapter);
+                }else{
+                    // TODO tilføj resultat for "ingen tidlligere kampe"
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.e("error : " + error.getMessage());
+            }
+        }){
+            @Override
+            protected Map<String,String> getParams() throws AuthFailureError {
+                Map<String,String> params = new HashMap<String, String>();
+                params.put("id",String.valueOf(getIntent().getIntExtra("id",0))); // TODO Test for at default værdi ikke bliver brugt. Potentiale for lorteBug(c)
+
+                return params;
+            }
+        };
+
+        // add the request object to the queue to be executed
+        ApplicationController.getInstance().addToRequestQueue(req);
+
 
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -75,3 +132,4 @@ public class MatchHistoryActivity extends ActionBarActivity {
         }
     }
 }
+

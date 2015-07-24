@@ -83,13 +83,6 @@ public class RegisterNewUserActivity extends AppCompatActivity {
                     dlgAlert.setPositiveButton("OK", null);
                     dlgAlert.setCancelable(true);
                     dlgAlert.create().show();
-
-                    dlgAlert.setPositiveButton("Ok",
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-
-                                }
-                            });
                 }
             }
         });

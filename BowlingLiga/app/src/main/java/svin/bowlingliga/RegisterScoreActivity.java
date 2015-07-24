@@ -2,17 +2,12 @@ package svin.bowlingliga;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CursorAdapter;
-import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.NumberPicker;
 import android.widget.Spinner;
 
@@ -122,9 +117,9 @@ public class RegisterScoreActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         System.out.println(response);
                         if(!response.equals("Success!")) {
-                            ErrorMessage(response);
+                            MessageBox(response, MsgType.ERROR);
                         }else{
-
+                            MessageBox(response, MsgType.OK);
                         }
                     }
                 }, new Response.ErrorListener() {
@@ -175,18 +170,27 @@ public class RegisterScoreActivity extends AppCompatActivity {
         }
     }
 
-    private void ErrorMessage(String ErrMsg) {
-        AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(RegisterScoreActivity.this);
-        dlgAlert.setMessage(ErrMsg);
-        dlgAlert.setTitle("Error Message...");
-        dlgAlert.setPositiveButton("OK", null);
-        dlgAlert.setCancelable(true);
-        dlgAlert.create().show();
+    private enum MsgType {
+        OK, ERROR
+    }
 
-        dlgAlert.setPositiveButton("Ok",
+    private void MessageBox(String Msg, final MsgType type) {
+        AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(RegisterScoreActivity.this);
+        dlgAlert.setMessage(Msg);
+        if(type == MsgType.ERROR){
+            dlgAlert.setTitle("Error Message...");
+            dlgAlert.setPositiveButton("OK", null);
+        }else{
+            dlgAlert.setTitle("Success!");
+            dlgAlert.setPositiveButton("Ok",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
+                        finish();
                     }
-                });
+                }
+            );
+        }
+        dlgAlert.setCancelable(true);
+        dlgAlert.create().show();
     }
 }

@@ -113,15 +113,8 @@ public class LoginMenuActivity extends AppCompatActivity {
                     dlgAlert.setMessage("wrong password or username");
                     dlgAlert.setTitle("Error Message...");
                     dlgAlert.setPositiveButton("OK", null);
-                    dlgAlert.setCancelable(true);
+                    dlgAlert.setCancelable(false);
                     dlgAlert.create().show();
-
-                    dlgAlert.setPositiveButton("Ok",
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-
-                                }
-                            });
                 }
             }
         }, new Response.ErrorListener() {

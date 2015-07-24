@@ -34,12 +34,13 @@ import svin.bowlingliga.Models.Player;
 
 public class BowlingLeagueStartActivity extends AppCompatActivity {
 
+    Player thisPlayer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bowling_league_start);
 
-        Player thisPlayer = null;
         try {
             JSONObject jObj = new JSONObject(getIntent().getStringExtra("userinfo"));
 
@@ -83,6 +84,7 @@ public class BowlingLeagueStartActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(BowlingLeagueStartActivity.this, MatchHistoryActivity.class);
+                intent.putExtra("id", thisPlayer.getId());
                 startActivity(intent);
             }
         });
