@@ -1,18 +1,20 @@
 <?php
 ob_start();
-$url = 'http://beer.mokote.dk/resources/api/getMatchHistory.php';
-//$url = 'http://127.0.0.1/beer/web/resources/api/getMatchHistory.php';
+//$url = 'http://beer.mokote.dk/resources/api/submitGame.php';
+$url = 'http://127.0.0.1/beer/resources/api/submitGame.php';
 function runSubmitGameUnitTests(){
-    testSubmitGamesInvalidUsername();
-    testSubmitGamesInvalidPassword();
-    testSubmitGamesWithTeamsTeam1Bad();
-    testSubmitGamesWithTeamsTeam2Bad();
-    testSubmitGamesWithTeamsGood();             // One game entry
-    testSubmitGamesNoTeamsPlayer1Bad();
-    testSubmitGamesNoTeamsPlayer2Bad();
-    testSubmitGamesNoTeamsPlayer3Bad();
-    testSubmitGamesNoTeamsPlayer4Bad();
-    testSubmitGamesNoTeamsAllPlayersGood();     // two game entry
+    //testSubmitGamesInvalidUsername();
+    //testSubmitGamesInvalidPassword();
+    //testSubmitGamesWithTeamsTeam1Bad();
+    //testSubmitGamesWithTeamsTeam2Bad();
+    //testSubmitGamesWithTeamsGood();             // One game entry
+    //testSubmitGamesNoTeamsPlayer1Bad();
+    //testSubmitGamesNoTeamsPlayer2Bad();
+    //testSubmitGamesNoTeamsPlayer3Bad();
+    //testSubmitGamesNoTeamsPlayer4Bad();
+    //testSubmitGamesNoTeamsAllPlayersGood();     // two game entry
+    testSubmitGamesNoTeamsAllPlayersGoodNoExistingTeams();
+    //testSubmitGamesMissingParameters1();
 }
 function testSubmitGamesInvalidUsername(){
     echo "Testing for invalid username...</br>";
@@ -267,6 +269,90 @@ function testSubmitGamesNoTeamsAllPlayersGood(){
         'score1' => '1234',
         'score2' => '5678',
         'hasTeams' => 'FALSE',
+    );
+
+// use key 'http' even if you send the request to https://...
+    $options = array(
+        'http' => array(
+            'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+            'method'  => 'POST',
+            'content' => http_build_query($data),
+        ),
+    );
+    $context  = stream_context_create($options);
+    $result = file_get_contents($url, false, $context);
+
+    echo $result . "</br>";
+}
+function testSubmitGamesNoTeamsAllPlayersGoodNoExistingTeams(){
+    echo "Testing no teams, all players good, but no existing teams for the players. Should create two teams. </br>";
+    global $url;
+    $data = array(
+        'username' => 'test2',
+        'password' => 'test2',
+        'player1' => 'Soren',
+        'player2' => 'Jens',
+        'player3' => 'Mads',
+        'player4' => 'direkte',
+        'score1' => '1234',
+        'score2' => '5678',
+        'hasTeams' => 'FALSE',
+    );
+
+// use key 'http' even if you send the request to https://...
+    $options = array(
+        'http' => array(
+            'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+            'method'  => 'POST',
+            'content' => http_build_query($data),
+        ),
+    );
+    $context  = stream_context_create($options);
+    $result = file_get_contents($url, false, $context);
+
+    echo $result . "</br>";
+}
+function testSubmitGamesMissingParameters1(){
+    echo "Testing missing parameter hasTeams</br>";
+    global $url;
+    $data = array(
+        'username' => 'test2',
+        'password' => 'test2',
+        'player1' => 'svin',
+        'player2' => 'fedesvin',
+        'player3' => 'Hotdogfun',
+        'player4' => 'four',
+        'score1' => '1234',
+        'score2' => '5678',
+        'hasTeam' => 'FALSE',
+    );
+
+// use key 'http' even if you send the request to https://...
+    $options = array(
+        'http' => array(
+            'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+            'method'  => 'POST',
+            'content' => http_build_query($data),
+        ),
+    );
+    $context  = stream_context_create($options);
+    $result = file_get_contents($url, false, $context);
+
+    echo $result . "</br>";
+}
+function testSubmitGamesMissingParameters2(){
+    echo "Testing missing parameter hasTeams</br>";
+    global $url;
+    $data = array(
+        'username' => 'test2',
+        'password' => 'test2',
+        'player1' => 'svin',
+        'player2' => 'fedesvin',
+        'player3' => 'Hotdogfun',
+        'player4' => 'four',
+        'score1' => '1234',
+        'score2' => '5678',
+        'hasTeam' => 'FALSE',
     );
 
 // use key 'http' even if you send the request to https://...
@@ -555,4 +641,14 @@ function testGetMatchHistoryGood(){
 
     echo $result . "</br>";
 }
-runGetMatchHistoryTests();
+//runGetMatchHistoryTests();
+function runCalcRatingUnitTests(){
+    testCalcRatingGood();
+}
+function testCalcRatingGood(){
+    require_once '/resources/classes/Rating.php';
+    $p1 = new Player(1, "1234", "ok@ok.dk", 12345678, 1, 0, 1000, 0);
+    $p1 = new Player(2, "1234", "ok@ok.dk", 12345678, 1, 0, 900, 0);
+    $r = new Rating();
+
+}
