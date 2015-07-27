@@ -649,10 +649,10 @@ function testCalcRatingGood(){
     require_once '/resources/classes/Rating.php';
     require_once '/resources/classes/Player.php';
     require_once '/resources/classes/Team.php';
-    $p1 = new Player(1, "Molle", "1234", "ok@ok.dk", 12345678, 1, 0, 1000, 0);
-    $p2 = new Player(2, "Dun", "1234", "ok@ok.dk", 12345678, 1, 0, 900, 0);
-    $p3 = new Player(2, "Andreas", "1234", "ok@ok.dk", 12345678, 1, 0, 900, 0);
-    $p4 = new Player(2, "T", "1234", "ok@ok.dk", 12345678, 1, 0, 900, 0);
+    $p1 = new Player(1, "Molle", "1234", "ok@ok.dk", "12345678", 1, 0, 1000, 0);
+    $p2 = new Player(2, "Dun", "1234", "ok@ok.dk", "12345678", 1, 0, 900, 0);
+    $p3 = new Player(2, "Andreas", "1234", "ok@ok.dk", "12345678", 1, 0, 900, 0);
+    $p4 = new Player(2, "T", "1234", "ok@ok.dk", "12345678", 1, 0, 900, 0);
     $t1 = new Team(1, "Team 1", $p1, $p2, 0, 0);
     $t2 = new Team(2, "Team 2", $p3, $p4, 0, 0);
     $r = new Rating(1200, 1200, 0, 1);

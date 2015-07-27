@@ -101,4 +101,20 @@ class Player
     {
         return $this->registered_on;
     }
+
+    /**
+     * @param mixed $gamesPlayed
+     */
+    public function setGamesPlayed($gamesPlayed)
+    {
+        $this->gamesPlayed = $gamesPlayed;
+    }
+
+    /**
+     * @param mixed $beersDrunk
+     */
+    public function setBeersDrunk($beersDrunk)
+    {
+        $this->beersDrunk = $beersDrunk;
+    }
 }

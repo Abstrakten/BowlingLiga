@@ -3,12 +3,14 @@
 ob_start();
 require_once '../dbconfig.php';
 require_once '../library/security.php';
+require_once '../classes/DatabaseAccessLayer.php';
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
 // Check POST input variables
+$db = new DatabaseAccessLayer($conn);
 if(!(isset($_POST['hasTeams'], $_POST['username'], $_POST['password'], $_POST['score1'], $_POST['score2']) && (isset($_POST['player1'], $_POST['player2'], $_POST['player3'], $_POST['player4']) || isset($_POST['team1'], $_POST['team2']))))
 {
     die("Missing parameters.");
@@ -79,7 +81,7 @@ if($hasTeams === 'FALSE'){
             WHERE (player1 = '$player1' AND player2 = '$player2')
             OR (player1 = '$player2' AND player2 = '$player1')");
     if($teamId1->num_rows == 0){
-        if(!CreateTeam($conn, $player1, $player2, "Anonymt hold")){
+        if($db->CreateTeam($player1, $player2, "Anonymt hold") === FALSE){
             // This should not happen.
             die("Could not create team for players " . $player1 . " and " . $player2 . " this should not happen.");
         }
@@ -95,7 +97,7 @@ if($hasTeams === 'FALSE'){
             OR (player1 = '$player4' AND player2 = '$player3')");
     if($teamId2->num_rows == 0){
         // Create new team
-        if(!CreateTeam($conn, $player3, $player4, "Anonymt hold")){
+        if($db->CreateTeam($player3, $player4, "Anonymt hold") === FALSE){
             // This should not happen.
             die("Could not create team for players " . $player3 . " and " . $player4 . " this should not happen.");
         }
@@ -105,27 +107,10 @@ if($hasTeams === 'FALSE'){
     else {
         $teamId2 = $teamId2->fetch_assoc()['id'];
     }
-    if(!CreateGame($conn, $teamId1, $teamId2, $score1, $score2)){
+    if($db->CreateGame($teamId1, $teamId2, $score1, $score2) === FALSE){
         die("Could not create game. This should not happen.");
     }
     $response = json_encode("Success");
     echo json_encode($response);
 }
-$conn->close();
-
-function CreateTeam($connection, $player1, $player2, $teamName){
-    date_default_timezone_set('Europe/Copenhagen');
-    $now = date('Y-m-d H:i:s', time());
-    $sql = "INSERT INTO teams (name, player1, player2, rating, created_on)
-            VALUES ('$teamName','$player1','$player2',0, '$now')";
-    return $connection->query($sql);
-}
-function CreateGame($connection, $team1, $team2, $score1, $score2){
-    // Create new game with the two teams.
-    // Timestamp the game
-    date_default_timezone_set('Europe/Copenhagen');
-    $now = date('Y-m-d H:i:s', time());
-    $sql = "INSERT INTO games (team1, team2, score1, score2, played_on)
-        VALUES ('$team1', '$team2', '$score1', '$score2', '$now')";
-    return $connection->query($sql);
-}
+$db = NULL;

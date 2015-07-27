@@ -76,7 +76,7 @@ class Team
      */
     public function getRating()
     {
-        return ($this->player1->rating + $this->player2->rating) / 2;
+        return ($this->player1->getRating() + $this->player2->getRating()) / 2;
     }
 
     /**

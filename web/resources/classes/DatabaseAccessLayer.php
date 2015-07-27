@@ -1,10 +1,13 @@
 <?php
-
+require_once 'Game.php';
+require_once 'Player.php';
+require_once 'Team.php';
+require_once 'Rating.php';
 class DatabaseAccessLayer
 {
     private $connection;
-    public function __construct($connection){
-        $this->connectiton = $connection;
+    public function __construct(mysqli $connection){
+        $this->connection = $connection;
     }
     public function __destruct(){
         $this->connection->close();
@@ -21,6 +24,9 @@ class DatabaseAccessLayer
         // Timestamp the game
         date_default_timezone_set('Europe/Copenhagen');
         $now = date('Y-m-d H:i:s', time());
+        // Get objects of the teams
+        $t1 = $this->ReadTeam($team1);
+        $t2 = $this->ReadTeam($team2);
 
         // Create local game, calculating new ratings.
         $newGame = new Game(0, $this->ReadTeam($team1), $this->ReadTeam($team2), $score1, $score2);
@@ -70,7 +76,7 @@ class DatabaseAccessLayer
 
     }
     // Update
-    public function UpdateTeam($teamObject){
+    public function UpdateTeam(Team $teamObject){
         $id = $teamObject->getId();
         $name = $teamObject->getName();
         $p1 = $teamObject->getPlayer1();
@@ -83,10 +89,10 @@ class DatabaseAccessLayer
                 WHERE id='$id'";
         return $this->connection->query($sql);
     }
-    public function UpdateGame($gameObject){
+    public function UpdateGame(Game $gameObject){
         // ...
     }
-    public function UpdatePlayer($playerObject){
+    public function UpdatePlayer(Player $playerObject){
         $id = $playerObject->getId();
         $name = $playerObject->getUsername();
         $pass = $playerObject->getPassword();
@@ -95,17 +101,19 @@ class DatabaseAccessLayer
         $beersDrunk = $playerObject->getBeersDrunk();
         $gamesPlayed = $playerObject->getGamesPlayed();
         $rating = $playerObject->getRating();
-
         $sql = "UPDATE players
                 SET players.username='$name',
                     players.password='$pass',
-                    players.email = $email,
-                    players.phone = $phone,
+                    players.email = '$email',
+                    players.phone = '$phone',
                     players.beersdrunk = '$beersDrunk',
                     players.gamesplayed = '$gamesPlayed',
-                    players.rating = '$rating',
-                WHERE id='$id'";
-        return $this->connection->query($sql);
+                    players.rating = '$rating'
+                WHERE players.id='$id'";
+        $result = $this->connection->query($sql);
+        if($result === TRUE){echo "ok <br>";}
+        else{ echo "No <br>" . $this->connection->error;}
+        return $result;
     }
     // Delete
     public function DeleteTeam($id){
