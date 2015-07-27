@@ -12,6 +12,26 @@ class Game
         $this->team2 = $team2;
         $this->score1 = $score1;
         $this->score2 = $score2;
+
+        if ($score1 > $score2){ $winner = $team1; $loser = $team2; }
+        else{ $winner = $team2; $loser = $team1; }
+        $r = new Rating($team1->getRating(), $team2->getRating(), $score1, $score2);
+        // Call new ratings because shit PHP cant call from new instance construtor......
+        $r->getNewRatings();
+        // Get differences in rating change
+        $winDif = $r["a"];
+        $lossDif = $r["b"];
+        // Update ratings for participants
+        $winner->getPlayer1()->setRating($winner->getPlayer1()->getRating() + $winDif);
+        $winner->getPlayer1()->setRating($winner->getPlayer2()->getRating() + $winDif);
+        $loser->getPlayer1()->setRating($loser->getPlayer1()->getRating() + $lossDif);
+        $loser->getPlayer2()->setRating($loser->getPlayer2()->getRating() + $lossDif);
+        // Update games played for paricipants
+        $winner->getPlayer1()->setGamesPlayed($winner->getPlayer1()->getGamesPlayed() + 1);
+        $winner->getPlayer2()->setGamesPlayed($winner->getPlayer2()->getGamesPlayed() + 1);
+        $loser->getPlayer1()->setGamesPlayed($loser->getPlayer1()->getGamesPlayed() + 1);
+        $loser->getPlayer2()->setGamesPlayed($loser->getPlayer2()->getGamesPlayed() + 1);
+        // TODO: Update beers drunk for participants.
     }
 
     /**
@@ -31,27 +51,11 @@ class Game
     }
 
     /**
-     * @param mixed $team1
-     */
-    public function setTeam1($team1)
-    {
-        $this->team1 = $team1;
-    }
-
-    /**
      * @return mixed
      */
     public function getTeam2()
     {
         return $this->team2;
-    }
-
-    /**
-     * @param mixed $team2
-     */
-    public function setTeam2($team2)
-    {
-        $this->team2 = $team2;
     }
 
     /**
@@ -63,26 +67,10 @@ class Game
     }
 
     /**
-     * @param mixed $score1
-     */
-    public function setScore1($score1)
-    {
-        $this->score1 = $score1;
-    }
-
-    /**
      * @return mixed
      */
     public function getScore2()
     {
         return $this->score2;
-    }
-
-    /**
-     * @param mixed $score2
-     */
-    public function setScore2($score2)
-    {
-        $this->score2 = $score2;
     }
 }

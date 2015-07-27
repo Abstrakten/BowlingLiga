@@ -6,14 +6,12 @@ class Team
     private $name;
     private $player1;
     private $player2;
-    private $rating;
     private $created_on;
-    public function __construct($id, $name, $p1, $p2, $rating, $created_on){
+    public function __construct($id, $name, $p1, $p2, $created_on){
         $this->id = $id;
         $this->name = $name;
         $this->player1 = $p1;
         $this->player2 = $p2;
-        $this->rating = $rating;
         $this->created_on = $created_on;
     }
 
@@ -78,7 +76,7 @@ class Team
      */
     public function getRating()
     {
-        return $this->rating;
+        return ($this->player1->rating + $this->player2->rating) / 2;
     }
 
     /**

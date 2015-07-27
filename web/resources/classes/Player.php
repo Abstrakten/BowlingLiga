@@ -22,7 +22,6 @@ class Player
         $this->rating = $rating;
         $this->registered_on = $registeredOn;
     }
-
     /**
      * @return mixed
      */
@@ -32,27 +31,11 @@ class Player
     }
 
     /**
-     * @param mixed $username
-     */
-    public function setUsername($username)
-    {
-        $this->username = $username;
-    }
-
-    /**
      * @return mixed
      */
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * @param mixed $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
     }
 
     /**
@@ -72,27 +55,11 @@ class Player
     }
 
     /**
-     * @param mixed $email
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-    }
-
-    /**
      * @return mixed
      */
     public function getPhone()
     {
         return $this->phone;
-    }
-
-    /**
-     * @param mixed $phone
-     */
-    public function setPhone($phone)
-    {
-        $this->phone = $phone;
     }
 
     /**
@@ -104,27 +71,11 @@ class Player
     }
 
     /**
-     * @param mixed $beersDrunk
-     */
-    public function setBeersDrunk($beersDrunk)
-    {
-        $this->beersDrunk = $beersDrunk;
-    }
-
-    /**
      * @return mixed
      */
     public function getGamesPlayed()
     {
         return $this->gamesPlayed;
-    }
-
-    /**
-     * @param mixed $gamesPlayed
-     */
-    public function setGamesPlayed($gamesPlayed)
-    {
-        $this->gamesPlayed = $gamesPlayed;
     }
 
     /**
