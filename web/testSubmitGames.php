@@ -1,7 +1,7 @@
 <?php
 ob_start();
-//$url = 'http://beer.mokote.dk/resources/api/submitGame.php';
-$url = 'http://127.0.0.1/beer/resources/api/submitGame.php';
+$url = 'http://beer.mokote.dk/resources/api/submitGame.php';
+//$url = 'http://127.0.0.1/beer/web/resources/api/submitGame.php';
 function runAllTests(){
     testCreateNewGame();
 }
@@ -15,8 +15,8 @@ function testCreateNewGame(){
         'player2' => 'fedesvin',
         'player3' => 'Hotdogfun',
         'player4' => 'four',
-        'score1' => '12',
-        'score2' => '23',
+        'score1' => '5',
+        'score2' => '3',
         'hasTeams' => 'FALSE',
     );
 

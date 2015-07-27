@@ -111,8 +111,6 @@ class DatabaseAccessLayer
                     players.rating = '$rating'
                 WHERE players.id='$id'";
         $result = $this->connection->query($sql);
-        if($result === TRUE){echo "ok <br>";}
-        else{ echo "No <br>" . $this->connection->error;}
         return $result;
     }
     // Delete

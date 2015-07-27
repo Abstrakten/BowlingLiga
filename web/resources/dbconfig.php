@@ -6,8 +6,8 @@ $password = "6fbjXZZi9tmx";
 $dbname = "mokotedk_oeb";
 
 // Local dev
-//$servername = "localhost";
-//$username = "root";
-//$password = "";
-//$dbname = "ol";
+/*$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "ol";*/
 ?>

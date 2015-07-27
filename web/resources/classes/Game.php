@@ -15,41 +15,39 @@ class Game
         $this->score1 = $score1;
         $this->score2 = $score2;
 
-        if ($score1 > $score2)
+        if ($this->$score1 > $this->$score2)
         {
-            $winner = $team1;
-            $loser = $team2;
             // Using constants for scoring...
             $score1 = 1;
             $score2 = 0;
         }
         else{
-            $winner = $team2;
-            $loser = $team1;
             // Using constants for scoring...
             $score1 = 0;
             $score2 = 1;
         }
-        $r = new Rating($team1->getRating(), $team2->getRating(), $score1, $score2);
-        // Call new ratings because shit PHP cant call from new instance construtor......
+        $r = new Rating($this->team1->getRating(), $this->team2->getRating(), $score1, $score2);
+        // Call new ratings because shit PHP cant call from new instance constructor......
         $r = $r->getNewRatings();
         // Get differences in rating change
-        $winDif = $winner->getRating() - $r["a"];
-        $lossDif = $loser->getRating() - $r["b"];
-        echo "Win dif: " . $winDif . "<br>";
-        echo "Loss dif: " . $lossDif . "<br>";
+        $team1Dif = $r["a"] - $this->team1->getRating();
+        $team2Dif = $r["b"] - $this->team2->getRating();
         // Update ratings for participants
-        $winner->getPlayer1()->setRating($winner->getPlayer1()->getRating() + $winDif);
-        $winner->getPlayer2()->setRating($winner->getPlayer2()->getRating() + $winDif);
-        $loser->getPlayer1()->setRating($loser->getPlayer1()->getRating() + $lossDif);
-        $loser->getPlayer2()->setRating($loser->getPlayer2()->getRating() + $lossDif);
+        $this->team1->getPlayer1()->setRating($team1->getPlayer1()->getRating() + $team1Dif);
+        $this->team1->getPlayer2()->setRating($team1->getPlayer2()->getRating() + $team1Dif);
+        $this->team2->getPlayer1()->setRating($team2->getPlayer1()->getRating() + $team2Dif);
+        $this->team2->getPlayer2()->setRating($team2->getPlayer2()->getRating() + $team2Dif);
 
         // Update games played for participants
-        $winner->getPlayer1()->setGamesPlayed($winner->getPlayer1()->getGamesPlayed() + 1);
-        $winner->getPlayer2()->setGamesPlayed($winner->getPlayer2()->getGamesPlayed() + 1);
-        $loser->getPlayer1()->setGamesPlayed($loser->getPlayer1()->getGamesPlayed() + 1);
-        $loser->getPlayer2()->setGamesPlayed($loser->getPlayer2()->getGamesPlayed() + 1);
-        // TODO: Update beers drunk for participants.
+        $this->team1->getPlayer1()->setGamesPlayed($this->team1->getPlayer1()->getGamesPlayed() + 1);
+        $this->team1->getPlayer2()->setGamesPlayed($this->team1->getPlayer2()->getGamesPlayed() + 1);
+        $this->team2->getPlayer1()->setGamesPlayed($this->team2->getPlayer1()->getGamesPlayed() + 1);
+        $this->team2->getPlayer2()->setGamesPlayed($this->team2->getPlayer2()->getGamesPlayed() + 1);
+        // Update beers drunk stats
+        $this->team1->getPlayer1()->setBeersDrunk($this->team1->getPlayer1()->getBeersDrunk() + ($this->score1 / 2));
+        $this->team1->getPlayer2()->setBeersDrunk($this->team1->getPlayer2()->getBeersDrunk() + ($this->score1 / 2));
+        $this->team2->getPlayer1()->setBeersDrunk($this->team2->getPlayer1()->getBeersDrunk() + ($this->score2 / 2));
+        $this->team2->getPlayer2()->setBeersDrunk($this->team2->getPlayer2()->getBeersDrunk() + ($this->score2 / 2));
     }
 
     /**

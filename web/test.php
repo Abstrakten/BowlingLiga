@@ -655,7 +655,17 @@ function testCalcRatingGood(){
     $p4 = new Player(2, "T", "1234", "ok@ok.dk", "12345678", 1, 0, 900, 0);
     $t1 = new Team(1, "Team 1", $p1, $p2, 0, 0);
     $t2 = new Team(2, "Team 2", $p3, $p4, 0, 0);
-    $r = new Rating(1200, 1200, 0, 1);
-    echo var_dump($r->getNewRatings());
+    $r1 = new Rating(1200, 1200, 0, 1);
+    $r2 = new Rating(1180, 1220, 0, 1);
+    $r3 = new Rating(1162, 1237, 0, 1);
+    $r4 = new Rating(1146, 1252, 0, 1);
+    $r1 = $r1->getNewRatings();
+    $r2 = $r2->getNewRatings();
+    $r3 = $r3->getNewRatings();
+    $r4 = $r4->getNewRatings();
+    echo "Lose dif: " . $r1["a"] . " and win dif: " . $r1["b"] . "<br>";
+    echo "Lose dif: " . $r2["a"] . " and win dif: " . $r2["b"] . "<br>";
+    echo "Lose dif: " . $r3["a"] . " and win dif: " . $r3["b"] . "<br>";
+    echo "Lose dif: " . $r4["a"] . " and win dif: " . $r4["b"] . "<br>";
 }
 runCalcRatingUnitTests();
