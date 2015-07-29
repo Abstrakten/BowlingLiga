@@ -129,8 +129,6 @@ public class RegisterScoreActivity extends AppCompatActivity {
                 }
                 else {
 
-                    // TODO Input sanitation regMatch
-
                     StringRequest req = new StringRequest(Request.Method.POST, "http://beer.mokote.dk/resources/api/submitGame.php", new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
