@@ -110,7 +110,6 @@ if($hasTeams === 'FALSE'){
     if($db->CreateGame($teamId1, $teamId2, $score1, $score2) === FALSE){
         die("Could not create game. This should not happen.");
     }
-    $response = json_encode("Success");
-    echo json_encode($response);
+    echo "Success!";
 }
 $db = NULL;

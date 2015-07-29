@@ -16,6 +16,15 @@ if (isset($_POST["id"])) {
                           Inner Join teams On teams.id = games.team1 Or teams.id = games.team2
                           Inner Join players On teams.player1 = '$id' Or teams.player2 = '$id'
                           Order by games.played_on DESC");
+
+/*    SELECT  a.*,
+        b.name as team_one,
+        c.name as team_two
+FROM    games a
+        INNER JOIN teams b
+            ON a.team1 = b.id
+        INNER JOIN teams c
+            ON a.team2 = c.id*/
     if (!empty($result)){
         // check for empty result
         if ($result->num_rows > 0) {

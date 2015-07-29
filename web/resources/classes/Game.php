@@ -15,18 +15,18 @@ class Game
         $this->score1 = $score1;
         $this->score2 = $score2;
 
-        if ($this->$score1 > $this->$score2)
+        if ($this->score1 > $this->score2)
         {
-            // Using constants for scoring...
-            $score1 = 1;
-            $score2 = 0;
+            $s1 = 1;
+            $s2 = 0;
         }
         else{
             // Using constants for scoring...
-            $score1 = 0;
-            $score2 = 1;
+            $s1 = 0;
+            $s2 = 1;
         }
-        $r = new Rating($this->team1->getRating(), $this->team2->getRating(), $score1, $score2);
+        $r = new Rating($this->team1->getRating(), $this->team2->getRating(), $s1, $s2);
+
         // Call new ratings because shit PHP cant call from new instance constructor......
         $r = $r->getNewRatings();
         // Get differences in rating change
