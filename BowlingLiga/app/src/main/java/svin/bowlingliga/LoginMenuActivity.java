@@ -98,9 +98,6 @@ public class LoginMenuActivity extends AppCompatActivity {
         // Post params to be sent to the server
 
 
-
-
-        // TODO make not stringRequest, but JSONRequest (perhaps)
         StringRequest sr = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
