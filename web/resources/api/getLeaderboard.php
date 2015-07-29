@@ -4,7 +4,7 @@
 	if($conn->connect_error){
 		die("Connect failed: " . $conn->connect_error);
 	}
-	$sql = "SELECT id, username, rating FROM players ORDER BY rating DESC";
+	$sql = "SELECT id, username, rating, won_games, lost_games FROM players ORDER BY rating DESC";
 	$result = $conn->query($sql);
 	if($result->num_rows > 0){
 		$i = 0;

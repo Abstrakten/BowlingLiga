@@ -19,11 +19,20 @@ class Game
         {
             $s1 = 1;
             $s2 = 0;
+            // Update games played for participants
+            $this->team1->getPlayer1()->setGamesWon($this->team1->getPlayer1()->getGamesWon() + 1);
+            $this->team1->getPlayer2()->setGamesWon($this->team1->getPlayer2()->getGamesWon() + 1);
+            $this->team2->getPlayer1()->setGamesLost($this->team2->getPlayer1()->getGamesLost() + 1);
+            $this->team2->getPlayer2()->setGamesLost($this->team2->getPlayer2()->getGamesLost() + 1);
         }
         else{
             // Using constants for scoring...
             $s1 = 0;
             $s2 = 1;
+            $this->team1->getPlayer1()->setGamesLost($this->team1->getPlayer1()->getGamesLost() + 1);
+            $this->team1->getPlayer2()->setGamesLost($this->team1->getPlayer2()->getGamesLost() + 1);
+            $this->team2->getPlayer1()->setGamesWon($this->team2->getPlayer1()->getGamesWon() + 1);
+            $this->team2->getPlayer2()->setGamesWon($this->team2->getPlayer2()->getGamesWon() + 1);
         }
         $r = new Rating($this->team1->getRating(), $this->team2->getRating(), $s1, $s2);
 
@@ -38,11 +47,6 @@ class Game
         $this->team2->getPlayer1()->setRating($team2->getPlayer1()->getRating() + $team2Dif);
         $this->team2->getPlayer2()->setRating($team2->getPlayer2()->getRating() + $team2Dif);
 
-        // Update games played for participants
-        $this->team1->getPlayer1()->setGamesPlayed($this->team1->getPlayer1()->getGamesPlayed() + 1);
-        $this->team1->getPlayer2()->setGamesPlayed($this->team1->getPlayer2()->getGamesPlayed() + 1);
-        $this->team2->getPlayer1()->setGamesPlayed($this->team2->getPlayer1()->getGamesPlayed() + 1);
-        $this->team2->getPlayer2()->setGamesPlayed($this->team2->getPlayer2()->getGamesPlayed() + 1);
         // Update beers drunk stats
         $this->team1->getPlayer1()->setBeersDrunk($this->team1->getPlayer1()->getBeersDrunk() + ($this->score1 / 2));
         $this->team1->getPlayer2()->setBeersDrunk($this->team1->getPlayer2()->getBeersDrunk() + ($this->score1 / 2));

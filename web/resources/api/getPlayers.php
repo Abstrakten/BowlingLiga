@@ -5,7 +5,9 @@
         <th>email</th>
         <th>phone</th>
         <th>beersdrunk</th>
-        <th>gamesplayed</th>
+        <th>won_games</th>
+        <th>lost_games</th>
+        <th>Win Rate</th>
         <th>rating</th>
         <th>registered_on</th>
     </tr>
@@ -27,7 +29,12 @@
             <td>" .$row['email'] ."</td>
             <td>" .$row['phone'] ."</td>
             <td>" .$row['beersdrunk'] ."</td>
-            <td>" .$row['gamesplayed'] ."</td>
+            <td>" .$row['won_games'] ."</td>
+            <td>" .$row['lost_games'] ."</td>";
+            $total = $row['lost_games'] + $row['won_games'];
+            if ($total != 0){ $wr = ($row['won_games'] / $total) * 100 . " %"; }
+            else{ $wr = "N/A"; }
+            echo "<td>" . $wr  ."</td>
             <td>" .$row['rating'] ."</td>
             <td>" .$row['registered_on'] ."</td>
             </tr>";
