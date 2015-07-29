@@ -38,6 +38,8 @@ public class RegisterScoreActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_score);
 
+        setTitle("Indberet Kamp");
+
         NumberPicker numPickLeft = (NumberPicker)findViewById(R.id.LeftTeamScore);
         numPickLeft.setMinValue(1);
         numPickLeft.setMaxValue(20);
@@ -131,7 +133,7 @@ public class RegisterScoreActivity extends AppCompatActivity {
                     @Override
                     protected Map<String,String> getParams(){
                         Map<String,String> params = new HashMap<String, String>();
-                        params.put("hasTeam","FALSE");
+                        params.put("hasTeams","FALSE");
                         params.put("username", getIntent().getStringExtra("username"));
                         params.put("password", getIntent().getStringExtra("password"));
                         params.put("player1",((Player)((Spinner) findViewById(R.id.HomeFirstName)).getSelectedItem()).getPlayerName());

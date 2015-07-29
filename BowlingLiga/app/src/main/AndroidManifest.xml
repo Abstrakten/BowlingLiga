@@ -55,6 +55,22 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="svin.bowlingliga.LoginMenuActivity" />
         </activity>
+        <activity
+            android:name=".ReadRulesActivity"
+            android:label="@string/title_activity_read_rules"
+            android:parentActivityName=".BowlingLeagueStartActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="svin.bowlingliga.BowlingLeagueStartActivity" />
+        </activity>
+        <activity
+            android:name=".ReadStatsActivity"
+            android:label="@string/title_activity_read_stats"
+            android:parentActivityName=".BowlingLeagueStartActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="svin.bowlingliga.BowlingLeagueStartActivity" />
+        </activity>
     </application>
 
 </manifest>

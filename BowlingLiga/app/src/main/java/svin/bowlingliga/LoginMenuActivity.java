@@ -30,6 +30,8 @@ public class LoginMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_menu);
 
+        setTitle("Login Menu");
+
 
         Button LoginButton = (Button)findViewById(R.id.LoginButton);
         LoginButton.setOnClickListener(new View.OnClickListener() {

@@ -32,6 +32,8 @@ public class RegisterNewUserActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_new_user);
 
+        setTitle("Opret ny bruger");
+
         final String RegUserURL = "http://beer.mokote.dk/resources/api/registerUser.php";
 
         Button CreateUserButton = (Button) findViewById(R.id.CreateUserButton);

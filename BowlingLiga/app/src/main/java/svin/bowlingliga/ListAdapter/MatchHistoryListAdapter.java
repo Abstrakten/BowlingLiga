@@ -58,6 +58,8 @@ public class MatchHistoryListAdapter extends BaseAdapter
             holder.homePlayerTwo = (TextView)view.findViewById(R.id.secondPlayerName);
             holder.awayPlayerOne = (TextView)view.findViewById(R.id.thirdPlayerName);
             holder.awayPlayerTwo = (TextView)view.findViewById(R.id.fourthPlayerName);
+            holder.homeTeamScore = (TextView)view.findViewById(R.id.LeftTeamScore);
+            holder.awayTeamScore = (TextView)view.findViewById(R.id.RightTeamScore);
             holder.date = (TextView)view.findViewById(R.id.matchDate);
             view.setTag(holder);
         } else
@@ -73,7 +75,10 @@ public class MatchHistoryListAdapter extends BaseAdapter
         holder.homePlayerTwo.setText(match.getHomeTeam().get(1).getPlayerName());
         holder.awayPlayerOne.setText(match.getAwayTeam().get(0).getPlayerName());
         holder.awayPlayerTwo.setText(match.getAwayTeam().get(1).getPlayerName());
+        holder.homeTeamScore.setText(String.valueOf(match.getHomeTeamScore()));
+        holder.awayTeamScore.setText(String.valueOf(match.getAwayTeamScore()));
         holder.date.setText(formatter.format(match.getDate()));
+
 
 
 
@@ -84,7 +89,7 @@ public class MatchHistoryListAdapter extends BaseAdapter
     {
         public TextView date;
         public TextView homePlayerOne,homePlayerTwo, homeTeamScore;
-        public TextView awayPlayerOne, awayPlayerTwo, awayTeamScore;
+        public TextView awayPlayerOne,awayPlayerTwo, awayTeamScore;
     }
 }
 

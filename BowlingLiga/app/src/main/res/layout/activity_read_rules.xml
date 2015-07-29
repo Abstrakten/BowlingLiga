@@ -1,0 +1,47 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="svin.bowlingliga.ReadRulesActivity">
+
+    <TextView
+        android:text="
+
+    1.	Spil regler:
+
+    -Rating kan kun opdateres, hvis alle spillere er enige om dette inden kampen starter.
+    -Spillerne og/eller dommeren bestemmer inden kampen, om der spilles til 3 eller 5 point.
+    -Skiftes der banehalvdel efter pointene er nået, svarer forrige kamp til en afsluttet runde, som skal opdateres individuelt via App'en.
+    -Bliver et holds dåse væltet af en bold, drikker tilhørende hold en halv øl hver eller deler en hel, alt efter dommerens vurdering.
+    -Alle spillere skal altid have en åben øl klar gennem hele spillet (hyggeøl).
+    -Spillerne skal somregelt kun bedes om tilladelse til at bowle. Spillerne kan både hente bolden og bytte den indbyrdes uden at bede om tilladelse.
+    -Der må ikke kastes, før begge spillere har drukket deres straftårer.
+    -Spilles der udendørs, kastes færdigdrukne øl ud på banen. Disse øl skal kastes over på modstanderens banehalvdel, ellers er de ugyldige. De kan fælde som enten forhindringer eller bomber.
+    -Bomber:  Rammer bolden en bombe, skal spilleren af det pågældende kast drikke en straftår. Rammer bolden derimod en eller flere bomber og dernæst modstanderens dåse, gives ramte bomber til modstanderholdet. Når en bombe rammes, skal den automatisk fjernes.
+    -Forhindringer: Ingen regler ved forhindringer. De fjernes ikke, når de bliver ramt.
+
+
+    2.	Dommer regler:
+
+    -Dommer er gud og bestemmer dermed alt. Han kan bl.a. indføre specielle begivenheder, såsom: Team bowl, ”der kommer spyd!”, straftåre, specielle straffe m.m. Dommeren kan også ændre enhver eksisterende regel i spillet.
+    -I tilfælde af en ringe dommer, kan dommeren smides ud af spillet, hvis begge deltagere på hvert hold er enige om dette.
+    -Der kan være op til to dommere.
+
+
+    3.	Bowling regler:  -Bolden gives til modstanderholdet efter hvert skud.
+
+    -Den samme spiller kan ikke bowle to gange i træk.
+    -Et skud erklæres ugyldigt, hvis ikke bolden rammer på spillerens egen banehalvdel første gang den rører jorden.
+    -Bolden må ikke stoppes af spillerne før den ligger stille eller er uden for banen
+    -Breddemæssigt måles banen mellem de to yderste armlæn på hvert hold og mellem de to holds dåser på langs.
+    -Bliver en modspiller ramt af en spillet bold, gives der straftår alt efter dommerens vurdering.
+    "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/RulesText" />
+
+
+
+</RelativeLayout>
