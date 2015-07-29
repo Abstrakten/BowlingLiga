@@ -8,17 +8,19 @@ class Player
     private $email;
     private $phone;
     private $beersDrunk;
-    private $gamesPlayed;
+    private $gamesWon;
+    private $gamesLost;
     private $rating;
     private $registered_on;
-    public function __construct($id, $name, $pass, $email, $phone, $beers, $gamesplayed, $rating, $registeredOn){
+    public function __construct($id, $name, $pass, $email, $phone, $beers, $wonGames, $lostGames, $rating, $registeredOn){
         $this->id = $id;
         $this->username = $name;
         $this->password = $pass;
         $this->email = $email;
         $this->phone = $phone;
         $this->beersDrunk = $beers;
-        $this->gamesPlayed = $gamesplayed;
+        $this->gamesWon = $wonGames;
+        $this->gamesLost = $lostGames;
         $this->rating = $rating;
         $this->registered_on = $registeredOn;
     }
@@ -73,14 +75,6 @@ class Player
     /**
      * @return mixed
      */
-    public function getGamesPlayed()
-    {
-        return $this->gamesPlayed;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getRating()
     {
         return $this->rating;
@@ -116,5 +110,37 @@ class Player
     public function setBeersDrunk($beersDrunk)
     {
         $this->beersDrunk = $beersDrunk;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGamesLost()
+    {
+        return $this->gamesLost;
+    }
+
+    /**
+     * @param mixed $gamesLost
+     */
+    public function setGamesLost($gamesLost)
+    {
+        $this->gamesLost = $gamesLost;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGamesWon()
+    {
+        return $this->gamesWon;
+    }
+
+    /**
+     * @param mixed $gamesWon
+     */
+    public function setGamesWon($gamesWon)
+    {
+        $this->gamesWon = $gamesWon;
     }
 }

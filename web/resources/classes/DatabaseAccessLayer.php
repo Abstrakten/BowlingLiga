@@ -70,7 +70,8 @@ class DatabaseAccessLayer
             $result['email'],
             $result['phone'],
             $result['beersdrunk'],
-            $result['gamesplayed'],
+            $result['won_games'],
+            $result['lost_games'],
             $result['rating'],
             $result['registered_on']);
 
@@ -99,7 +100,8 @@ class DatabaseAccessLayer
         $email = $playerObject->getEmail();
         $phone = $playerObject->getPhone();
         $beersDrunk = $playerObject->getBeersDrunk();
-        $gamesPlayed = $playerObject->getGamesPlayed();
+        $wonGames = $playerObject->getGamesWon();
+        $lostGames = $playerObject->getGamesLost();
         $rating = $playerObject->getRating();
         $sql = "UPDATE players
                 SET players.username='$name',
@@ -107,7 +109,8 @@ class DatabaseAccessLayer
                     players.email = '$email',
                     players.phone = '$phone',
                     players.beersdrunk = '$beersDrunk',
-                    players.gamesplayed = '$gamesPlayed',
+                    players.won_games = '$wonGames',
+                    players.lost_games = '$lostGames',
                     players.rating = '$rating'
                 WHERE players.id='$id'";
         $result = $this->connection->query($sql);

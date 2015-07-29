@@ -22,6 +22,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -44,6 +45,8 @@ public class MatchHistoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_match_history);
 
+        setTitle("Kamp Historik");
+
         final ListView historyList = (ListView) findViewById(R.id.matchHistoryListView);
 
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
@@ -64,23 +67,30 @@ public class MatchHistoryActivity extends AppCompatActivity {
                     try {
                         jArr = new JSONArray(response);
 
+                        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                        Date dato;
 
                         for (int i = 0; i < jArr.length(); i++) {
 
                             JSONObject jObj = new JSONObject(jArr.getString(i));
 
+
+                             dato = format.parse(jObj.getString("played_on"));
+
                             Match m = new Match(
-                                    new Date(),
+                                    dato,
                                     jObj.getInt("score1"),
                                     jObj.getInt("score2"),
-                                    Arrays.asList(new Player(99991, "DummyPlayer1", 1501), new Player(99992, "DummyPlayer2", 1502)),
-                                    Arrays.asList(new Player(99993, "DummyPlayer3", 1503), new Player(99994, "DummyPlayer4", 1504))
+                                    Arrays.asList(new Player(9999, jObj.getString("team1_player1"), 9999), new Player(9999, jObj.getString("team1_player2"), 1502)),
+                                    Arrays.asList(new Player(99993, jObj.getString("team2_player1"), 1503), new Player(99994, jObj.getString("team2_player2"), 1504))
                             );
 
                             matchList.add(m);
                         }
 
                     } catch (JSONException e) {
+                        e.printStackTrace();
+                    } catch (ParseException e) {
                         e.printStackTrace();
                     }
 

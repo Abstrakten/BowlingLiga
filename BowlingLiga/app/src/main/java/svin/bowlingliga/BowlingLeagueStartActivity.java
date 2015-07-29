@@ -34,7 +34,7 @@ import svin.bowlingliga.Models.Player;
 
 public class BowlingLeagueStartActivity extends AppCompatActivity {
 
-    Player thisPlayer;
+    Player thisPlayer = new Player(9999,"JohnDoeFuckedUp",9999);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +88,26 @@ public class BowlingLeagueStartActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        Button ReadStatsButton = (Button) findViewById(R.id.ReadStatsButton);
+        ReadStatsButton.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               Intent intent = new Intent(BowlingLeagueStartActivity.this, ReadStatsActivity.class);
+               intent.putExtra("id", thisPlayer.getId());
+               startActivity(intent);
+           }
+       });
+
+        Button ReadRulesButton = (Button) findViewById(R.id.ReadRulesButton);
+        ReadRulesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(BowlingLeagueStartActivity.this, ReadRulesActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     @Override

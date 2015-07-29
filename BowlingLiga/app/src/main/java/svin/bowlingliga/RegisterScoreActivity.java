@@ -38,6 +38,8 @@ public class RegisterScoreActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_score);
 
+        setTitle("Indberet Kamp");
+
         NumberPicker numPickLeft = (NumberPicker)findViewById(R.id.LeftTeamScore);
         numPickLeft.setMinValue(1);
         numPickLeft.setMaxValue(20);
@@ -108,44 +110,60 @@ public class RegisterScoreActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                System.out.println( ((Player)((Spinner) findViewById(R.id.HomeFirstName)).getSelectedItem()).getPlayerName());
+                System.out.println(((Player) ((Spinner) findViewById(R.id.HomeFirstName)).getSelectedItem()).getPlayerName());
+                String name1 = ((Player) ((Spinner) findViewById(R.id.HomeFirstName)).getSelectedItem()).getPlayerName();
+                String name2 = ((Player) ((Spinner) findViewById(R.id.HomeSecondName)).getSelectedItem()).getPlayerName();
+                String name3 = ((Player) ((Spinner) findViewById(R.id.AwayFirstName)).getSelectedItem()).getPlayerName();
+                String name4 = ((Player) ((Spinner) findViewById(R.id.AwaySecondName)).getSelectedItem()).getPlayerName();
 
-                // TODO Input sanitation regMatch
+                if(((NumberPicker) findViewById(R.id.LeftTeamScore)).getValue() == ((NumberPicker) findViewById(R.id.RightTeamScore)).getValue()){
+                    MessageBox("No Equal Scores allow", MsgType.ERROR);
+                }
+                else if(name1.equals(name2) ||
+                        name1.equals(name3) ||
+                        name1.equals(name4) ||
+                        name2.equals(name3) ||
+                        name2.equals(name4) ||
+                        name3.equals(name4)) {
+                    MessageBox("No Split Personalities", MsgType.ERROR);
+                }
+                else {
 
-                StringRequest req = new StringRequest(Request.Method.POST, "http://beer.mokote.dk/resources/api/submitGame.php", new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        System.out.println(response);
-                        if(!response.equals("Success!")) {
-                            MessageBox(response, MsgType.ERROR);
-                        }else{
-                            MessageBox(response, MsgType.OK);
+                    StringRequest req = new StringRequest(Request.Method.POST, "http://beer.mokote.dk/resources/api/submitGame.php", new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            System.out.println(response);
+                            if (!response.equals("Success!")) {
+                                MessageBox(response, MsgType.ERROR);
+                            } else {
+                                MessageBox(response, MsgType.OK);
+                            }
                         }
-                    }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        VolleyLog.e("Error:" + error.getMessage());
-                    }
-                }){
-                    @Override
-                    protected Map<String,String> getParams(){
-                        Map<String,String> params = new HashMap<String, String>();
-                        params.put("hasTeam","FALSE");
-                        params.put("username", getIntent().getStringExtra("username"));
-                        params.put("password", getIntent().getStringExtra("password"));
-                        params.put("player1",((Player)((Spinner) findViewById(R.id.HomeFirstName)).getSelectedItem()).getPlayerName());
-                        params.put("player2",((Player)((Spinner) findViewById(R.id.HomeSecondName)).getSelectedItem()).getPlayerName());
-                        params.put("player3",((Player)((Spinner) findViewById(R.id.AwayFirstName)).getSelectedItem()).getPlayerName());
-                        params.put("player4",((Player)((Spinner) findViewById(R.id.AwaySecondName)).getSelectedItem()).getPlayerName());
-                        params.put("score1", String.valueOf(((NumberPicker) findViewById(R.id.LeftTeamScore)).getValue()));
-                        params.put("score2", String.valueOf(((NumberPicker) findViewById(R.id.RightTeamScore)).getValue()));
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            VolleyLog.e("Error:" + error.getMessage());
+                        }
+                    }) {
+                        @Override
+                        protected Map<String, String> getParams() {
+                            Map<String, String> params = new HashMap<String, String>();
+                            params.put("hasTeams", "FALSE");
+                            params.put("username", getIntent().getStringExtra("username"));
+                            params.put("password", getIntent().getStringExtra("password"));
+                            params.put("player1", ((Player) ((Spinner) findViewById(R.id.HomeFirstName)).getSelectedItem()).getPlayerName());
+                            params.put("player2", ((Player) ((Spinner) findViewById(R.id.HomeSecondName)).getSelectedItem()).getPlayerName());
+                            params.put("player3", ((Player) ((Spinner) findViewById(R.id.AwayFirstName)).getSelectedItem()).getPlayerName());
+                            params.put("player4", ((Player) ((Spinner) findViewById(R.id.AwaySecondName)).getSelectedItem()).getPlayerName());
+                            params.put("score1", String.valueOf(((NumberPicker) findViewById(R.id.LeftTeamScore)).getValue()));
+                            params.put("score2", String.valueOf(((NumberPicker) findViewById(R.id.RightTeamScore)).getValue()));
 
-                        return params;
-                    }
-                };
+                            return params;
+                        }
+                    };
 
-                ApplicationController.getInstance().addToRequestQueue(req);
+                    ApplicationController.getInstance().addToRequestQueue(req);
+                }
             }
         });
 

@@ -31,6 +31,7 @@ public class ReadRankingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_read_rankings);
 
+        setTitle("Ranglisten");
 
         final String URL = "http://beer.mokote.dk/resources/api/getLeaderboard.php";
 
@@ -46,7 +47,9 @@ public class ReadRankingsActivity extends AppCompatActivity {
                         Player p = new Player(
                                 jObj.getInt("id"),
                                 jObj.getString("username"),
-                                jObj.getInt("rating"));
+                                jObj.getInt("rating"),
+                                jObj.getInt("won_games"),
+                                jObj.getInt("lost_games"));
 
                         playerList.add(p);
                     }
