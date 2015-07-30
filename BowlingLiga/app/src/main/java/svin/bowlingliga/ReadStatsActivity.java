@@ -51,7 +51,7 @@ public class ReadStatsActivity extends AppCompatActivity {
                     int winrateNum = (int)((winsNum / (winsNum+lossesNum))*100);
 
                     TextView winrate = (TextView)findViewById(R.id.winRate);
-                    winrate.setText(String.valueOf(winrateNum)+"%test");
+                    winrate.setText(String.valueOf(winrateNum)+"%");
 
                     TextView beers = (TextView)findViewById(R.id.beersDrunk);
                     beers.setText(jObj.getString("beersdrunk"));
