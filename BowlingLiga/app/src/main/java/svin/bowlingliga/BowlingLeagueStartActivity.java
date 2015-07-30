@@ -41,8 +41,6 @@ public class BowlingLeagueStartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bowling_league_start);
 
-
-
         try {
             JSONObject jObj = new JSONObject(getIntent().getStringExtra("userinfo"));
 
@@ -54,13 +52,7 @@ public class BowlingLeagueStartActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        TextView MMR = (TextView) findViewById(R.id.RatingText);
-        MMR.setText(String.valueOf(thisPlayer.getPlayerRating()));
-
         setTitle("Ølbowling Liga - " + thisPlayer.getPlayerName());
-
-
-
 
 
         Button regGameButton = (Button)findViewById(R.id.RegGameButton);

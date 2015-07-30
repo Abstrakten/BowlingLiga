@@ -30,8 +30,10 @@ public class ReadStatsActivity extends AppCompatActivity {
         StringRequest req = new StringRequest(Request.Method.POST, "http://beer.mokote.dk/resources/api/getStats.php", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                System.out.println(response);
-                System.out.println("test");
+                System.out.println(response); //debugging
+
+
+
             }
         }, new Response.ErrorListener() {
             @Override
