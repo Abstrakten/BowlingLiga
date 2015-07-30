@@ -41,6 +41,8 @@ public class BowlingLeagueStartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bowling_league_start);
 
+
+
         try {
             JSONObject jObj = new JSONObject(getIntent().getStringExtra("userinfo"));
 
@@ -52,10 +54,12 @@ public class BowlingLeagueStartActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        TextView MMR = (TextView)findViewById(R.id.RatingText);
+        TextView MMR = (TextView) findViewById(R.id.RatingText);
         MMR.setText(String.valueOf(thisPlayer.getPlayerRating()));
 
         setTitle("Ølbowling Liga - " + thisPlayer.getPlayerName());
+
+
 
 
 
@@ -108,6 +112,44 @@ public class BowlingLeagueStartActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        StringRequest req = new StringRequest(Request.Method.POST, "http://beer.mokote.dk/resources/api/getStats.php", new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                try {
+                    JSONObject jObj = new JSONObject(response);
+                    thisPlayer.setPlayerRating(jObj.getInt("rating"));
+                    TextView MMR = (TextView) findViewById(R.id.RatingText);
+                    MMR.setText(String.valueOf(thisPlayer.getPlayerRating()));
+                    System.out.println("hello, is it me"); //Debugging
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.e("Error:" + error.getMessage());
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("id", String.valueOf(thisPlayer.getId()));
+
+                return params;
+            }
+        };
+
+        ApplicationController.getInstance().addToRequestQueue(req);
     }
 
     @Override

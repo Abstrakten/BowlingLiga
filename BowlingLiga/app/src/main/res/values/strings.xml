@@ -14,4 +14,5 @@
     <string name="title_activity_register_new_user">RegisterNewUserActivity</string>
     <string name="title_activity_read_rules">ReadRulesActivity</string>
     <string name="title_activity_read_stats">ReadStatsActivity</string>
+    <string name="title_activity_main">MainActivity</string>
 </resources>
