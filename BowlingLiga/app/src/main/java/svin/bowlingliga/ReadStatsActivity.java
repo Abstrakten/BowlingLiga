@@ -7,12 +7,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -31,9 +35,32 @@ public class ReadStatsActivity extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 System.out.println(response); //debugging
+                JSONObject jObj;
+
+                try {
+                    jObj = new JSONObject(response);
+
+                    TextView wins = (TextView)findViewById(R.id.wins);
+                    wins.setText(jObj.getString("won_games"));
+
+                    TextView losses = (TextView)findViewById(R.id.losses);
+                    losses.setText(jObj.getString("lost_games"));
+
+                    double winsNum = jObj.getInt("won_games");
+                    double lossesNum = jObj.getInt("lost_games");
+                    int winrateNum = (int)((winsNum / (winsNum+lossesNum))*100);
+
+                    TextView winrate = (TextView)findViewById(R.id.winRate);
+                    winrate.setText(String.valueOf(winrateNum)+"%test");
+
+                    TextView beers = (TextView)findViewById(R.id.beersDrunk);
+                    beers.setText(jObj.getString("beersdrunk"));
 
 
 
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         }, new Response.ErrorListener() {
             @Override
