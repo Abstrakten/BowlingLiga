@@ -1,47 +1,71 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="svin.bowlingliga.ReadRulesActivity">
 
-    <TextView
-        android:text="
 
-    1.	Spil regler:
+        <TextView
+            android:text="1. Spil regler:"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/RulesText1" />
 
-    -Rating kan kun opdateres, hvis alle spillere er enige om dette inden kampen starter.
-    -Spillerne og/eller dommeren bestemmer inden kampen, om der spilles til 3 eller 5 point.
-    -Skiftes der banehalvdel efter pointene er nået, svarer forrige kamp til en afsluttet runde, som skal opdateres individuelt via App'en.
-    -Bliver et holds dåse væltet af en bold, drikker tilhørende hold en halv øl hver eller deler en hel, alt efter dommerens vurdering.
-    -Alle spillere skal altid have en åben øl klar gennem hele spillet (hyggeøl).
-    -Spillerne skal somregelt kun bedes om tilladelse til at bowle. Spillerne kan både hente bolden og bytte den indbyrdes uden at bede om tilladelse.
-    -Der må ikke kastes, før begge spillere har drukket deres straftårer.
-    -Spilles der udendørs, kastes færdigdrukne øl ud på banen. Disse øl skal kastes over på modstanderens banehalvdel, ellers er de ugyldige. De kan fælde som enten forhindringer eller bomber.
-    -Bomber:  Rammer bolden en bombe, skal spilleren af det pågældende kast drikke en straftår. Rammer bolden derimod en eller flere bomber og dernæst modstanderens dåse, gives ramte bomber til modstanderholdet. Når en bombe rammes, skal den automatisk fjernes.
-    -Forhindringer: Ingen regler ved forhindringer. De fjernes ikke, når de bliver ramt.
+        <TextView
+            android:text="
+            - Rating kan kun opdateres, hvis alle spillere er enige om dette inden kampen starter. \n
+            - Spillerne og/eller dommeren bestemmer inden kampen, om der spilles til 3 eller 5 point. \n
+            - Skiftes der banehalvdel efter pointene er nået, svarer forrige kamp til en afsluttet runde, som skal opdateres individuelt via App'en. \n
+            - Bliver et holds dåse væltet af en bold, drikker tilhørende hold en halv øl hver eller deler en hel, alt efter dommerens vurdering. \n
+            - Alle spillere skal altid have en åben øl klar gennem hele spillet (hyggeøl). \n
+            - Spillerne skal somregelt kun bedes om tilladelse til at bowle. Spillerne kan både hente bolden og bytte den indbyrdes uden at bede om tilladelse. \n
+            - Der må ikke kastes, før begge spillere har drukket deres straftårer. \n
+            - Spilles der udendørs, kastes færdigdrukne øl ud på banen. Disse øl skal kastes over på modstanderens banehalvdel, ellers er de ugyldige. De kan fælde som enten forhindringer eller bomber. \n
+            - Bomber:  Rammer bolden en bombe, skal spilleren af det pågældende kast drikke en straftår. Rammer bolden derimod en eller flere bomber og dernæst modstanderens dåse, gives ramte bomber til modstanderholdet. Når en bombe rammes, skal den automatisk fjernes. \n
+            - Forhindringer: Ingen regler ved forhindringer. De fjernes ikke, når de bliver ramt."
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/RulesText1"
+            android:id="@+id/RulesText2"/>
 
+        <TextView
+            android:layout_below="@id/RulesText2"
+            android:id="@+id/RulesText3"
+            android:text="2. Dommer regler:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
-    2.	Dommer regler:
+        <TextView
+            android:text="
+            - Dommer er gud og bestemmer dermed alt. Han kan bl.a. indføre specielle begivenheder, såsom: Team bowl, ”der kommer spyd!”, straftåre, specielle straffe m.m. Dommeren kan også ændre enhver eksisterende regel i spillet. \n
+            - I tilfælde af en ringe dommer, kan dommeren smides ud af spillet, hvis begge deltagere på hvert hold er enige om dette. \n
+            - Der kan være op til to dommere."
+            android:layout_below="@id/RulesText3"
+            android:id="@+id/RulesText4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
-    -Dommer er gud og bestemmer dermed alt. Han kan bl.a. indføre specielle begivenheder, såsom: Team bowl, ”der kommer spyd!”, straftåre, specielle straffe m.m. Dommeren kan også ændre enhver eksisterende regel i spillet.
-    -I tilfælde af en ringe dommer, kan dommeren smides ud af spillet, hvis begge deltagere på hvert hold er enige om dette.
-    -Der kan være op til to dommere.
+        <TextView
+            android:layout_below="@id/RulesText4"
+            android:text="3. Bowling regler:"
+            android:id="@+id/RulesText5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
-
-    3.	Bowling regler:  -Bolden gives til modstanderholdet efter hvert skud.
-
-    -Den samme spiller kan ikke bowle to gange i træk.
-    -Et skud erklæres ugyldigt, hvis ikke bolden rammer på spillerens egen banehalvdel første gang den rører jorden.
-    -Bolden må ikke stoppes af spillerne før den ligger stille eller er uden for banen
-    -Breddemæssigt måles banen mellem de to yderste armlæn på hvert hold og mellem de to holds dåser på langs.
-    -Bliver en modspiller ramt af en spillet bold, gives der straftår alt efter dommerens vurdering.
-    "
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/RulesText" />
-
+        <TextView
+            android:text="
+            - Bolden gives til modstanderholdet efter hvert skud. \n
+            - Den samme spiller kan ikke bowle to gange i træk. \n
+            - Et skud erklæres ugyldigt, hvis ikke bolden rammer på spillerens egen banehalvdel første gang den rører jorden. \n
+            - Bolden må ikke stoppes af spillerne før den ligger stille eller er uden for banen. \n
+            - Breddemæssigt måles banen mellem de to yderste armlæn på hvert hold og mellem de to holds dåser på langs. \n
+            - Bliver en modspiller ramt af en spillet bold, gives der straftår alt efter dommerens vurdering."
+            android:layout_below="@+id/RulesText5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
 
 </RelativeLayout>
