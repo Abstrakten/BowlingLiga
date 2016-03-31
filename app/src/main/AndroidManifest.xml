@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="svin.bowlingliga" >
+    package="svin.bowlingliga">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -9,15 +9,14 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="Bowling Liga"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
             android:name=".BowlingLeagueStartActivity"
-            android:label="Bowling Liga" >
-        </activity>
+            android:label="Bowling Liga" />
         <activity
             android:name=".RegisterScoreActivity"
             android:label="@string/title_activity_register_score_activiten"
-            android:parentActivityName=".BowlingLeagueStartActivity" >
+            android:parentActivityName=".BowlingLeagueStartActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".BowlingLeagueStartActivity" />
@@ -25,14 +24,14 @@
         <activity
             android:name=".ReadRankingsActivity"
             android:label="@string/title_activity_read_rankings"
-            android:parentActivityName=".BowlingLeagueStartActivity" >
+            android:parentActivityName=".BowlingLeagueStartActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="svin.bowlingliga.BowlingLeagueStartActivity" />
         </activity>
         <activity
             android:name=".LoginMenuActivity"
-            android:label="Bowling Liga" >
+            android:label="Bowling Liga">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -42,7 +41,7 @@
         <activity
             android:name=".MatchHistoryActivity"
             android:label="@string/title_activity_match_history"
-            android:parentActivityName=".BowlingLeagueStartActivity" >
+            android:parentActivityName=".BowlingLeagueStartActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="svin.bowlingliga.BowlingLeagueStartActivity" />
@@ -50,7 +49,7 @@
         <activity
             android:name=".RegisterNewUserActivity"
             android:label="@string/title_activity_register_new_user"
-            android:parentActivityName=".LoginMenuActivity" >
+            android:parentActivityName=".LoginMenuActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="svin.bowlingliga.LoginMenuActivity" />
@@ -58,7 +57,7 @@
         <activity
             android:name=".ReadRulesActivity"
             android:label="@string/title_activity_read_rules"
-            android:parentActivityName=".BowlingLeagueStartActivity" >
+            android:parentActivityName=".BowlingLeagueStartActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="svin.bowlingliga.BowlingLeagueStartActivity" />
@@ -66,11 +65,12 @@
         <activity
             android:name=".ReadStatsActivity"
             android:label="@string/title_activity_read_stats"
-            android:parentActivityName=".BowlingLeagueStartActivity" >
+            android:parentActivityName=".BowlingLeagueStartActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="svin.bowlingliga.BowlingLeagueStartActivity" />
         </activity>
+        <activity android:name=".profile_activity"></activity>
     </application>
 
 </manifest>

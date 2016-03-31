@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/baggrund"
+    tools:context="svin.bowlingliga.profile_activity">
+
+    <ImageView
+        android:id="@+id/ProfilePic"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/baggrund"
+        android:layout_width="200dp"
+        android:layout_height="230dp"
+        android:scaleType="centerCrop"
+        android:paddingBottom="5dp"
+        />
+
+    <TextView
+        android:id="@+id/FirstName"
+        android:layout_marginTop="5dp"
+        android:text="First Name"
+        android:layout_gravity="start"
+        android:textSize="20dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ProfilePic"/>
+    <EditText
+        android:id="@+id/FirstNameEdit"
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:layout_gravity="start"
+        android:layout_below="@+id/FirstName"
+        />
+    <TextView
+        android:id="@+id/LastName"
+        android:text="Last Name"
+        android:layout_gravity="start"
+        android:textSize="20dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/FirstNameEdit"/>
+    <EditText
+        android:id="@+id/LastNameEdit"
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:layout_gravity="start"
+        android:layout_below="@+id/LastName"
+        />
+
+        />
+    <LinearLayout
+        android:layout_below="@+id/LastNameEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_marginTop="4dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/EmailEdit"
+            android:layout_weight="1">
+
+            <Button style="@style/ButtonStyle"
+                android:id="@+id/newProfilePic"
+                android:layout_gravity="center"
+                android:text="Ændre billede"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                />
+            <Button style="@style/ButtonStyle"
+                android:id="@+id/saveChanges"
+                android:onClick="saveProfile"
+                android:layout_gravity="center"
+                android:text="Gem ændringer"
+                android:textSize="13dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ProfilePic"/>
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_marginTop="4dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/EmailEdit"
+            android:layout_centerHorizontal="true"
+            android:layout_weight="1">
+            <Button style="@style/ButtonStyle"
+                android:id="@+id/ReadStatsButton"
+                android:layout_gravity="center"
+                android:text="Statistik"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                />
+            <Button style="@style/ButtonStyle"
+                android:id="@+id/LogoutButton"
+                android:layout_gravity="center"
+                android:text="Log ud"
+                android:textSize="13dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ProfilePic"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

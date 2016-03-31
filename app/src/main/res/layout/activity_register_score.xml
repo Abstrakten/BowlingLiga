@@ -68,15 +68,43 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/RightTeamScore"/>
 
+
         </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/IndberetLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@+id/outerLayout">
+
     </LinearLayout>
 
-    <Button
-        android:id="@+id/submitButton"
-        android:text="Indberet"
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_alignParentBottom="true">
+
+    <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true" />
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_below="@+id/submitButton">
+
+        <Button style="@style/ButtonStyle"
+            android:id="@+id/submitButton"
+            android:text="Registrer Spil"
+            android:layout_marginBottom="5dp"></Button>/>
+
+        <Button style="@style/ButtonStyle"
+            android:text="Gamle Spil"
+            android:layout_marginBottom="5dp"
+            android:id="@+id/ReadMatchHistoryButton"
+            android:layout_below="@+id/RegGameButton"/>
+    </LinearLayout>
+</LinearLayout>
 
     
 </RelativeLayout>

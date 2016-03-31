@@ -2,6 +2,7 @@ package svin.bowlingliga;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -32,6 +33,8 @@ import svin.bowlingliga.Models.Player;
 
 
 public class RegisterScoreActivity extends AppCompatActivity {
+
+    Player thisPlayer = new Player(9999,"JohnDoeFuckedUp",9999);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,6 +107,15 @@ public class RegisterScoreActivity extends AppCompatActivity {
         // add the request object to the queue to be executed
         ApplicationController.getInstance().addToRequestQueue(req);
 
+        Button ReadMatchHistoryButton = (Button) findViewById(R.id.ReadMatchHistoryButton);
+        ReadMatchHistoryButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(RegisterScoreActivity.this, MatchHistoryActivity.class);
+                intent.putExtra("id", thisPlayer.getId());
+                startActivity(intent);
+            }
+        });
 
         Button SubmitButton = (Button) findViewById(R.id.submitButton);
         SubmitButton.setOnClickListener(new View.OnClickListener() {

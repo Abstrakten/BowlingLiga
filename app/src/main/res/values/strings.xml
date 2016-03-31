@@ -15,4 +15,5 @@
     <string name="title_activity_read_rules">ReadRulesActivity</string>
     <string name="title_activity_read_stats">ReadStatsActivity</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_profile_page">profile_page</string>
 </resources>

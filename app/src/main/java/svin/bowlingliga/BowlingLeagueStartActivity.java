@@ -75,25 +75,26 @@ public class BowlingLeagueStartActivity extends AppCompatActivity {
             }
         });
 
-        Button ReadMatchHistoryButton = (Button) findViewById(R.id.ReadMatchHistoryButton);
+        Button ReadMatchHistoryButton = (Button) findViewById(R.id.ProfilePageButton);
         ReadMatchHistoryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(BowlingLeagueStartActivity.this, MatchHistoryActivity.class);
+                Intent intent = new Intent(BowlingLeagueStartActivity.this, profile_activity.class);
                 intent.putExtra("id", thisPlayer.getId());
                 startActivity(intent);
             }
         });
 
-        Button ReadStatsButton = (Button) findViewById(R.id.ReadStatsButton);
-        ReadStatsButton.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View view) {
-               Intent intent = new Intent(BowlingLeagueStartActivity.this, ReadStatsActivity.class);
-               intent.putExtra("id", thisPlayer.getId());
-               startActivity(intent);
-           }
-       });
+//        Udkommenteret for later use
+//        Button ReadStatsButton = (Button) findViewById(R.id.ReadStatsButton);
+//        ReadStatsButton.setOnClickListener(new View.OnClickListener() {
+//           @Override
+//           public void onClick(View view) {
+//               Intent intent = new Intent(BowlingLeagueStartActivity.this, ReadStatsActivity.class);
+//               intent.putExtra("id", thisPlayer.getId());
+//               startActivity(intent);
+//           }
+//       });
 
         Button ReadRulesButton = (Button) findViewById(R.id.ReadRulesButton);
         ReadRulesButton.setOnClickListener(new View.OnClickListener() {

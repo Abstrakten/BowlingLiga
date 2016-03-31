@@ -16,47 +16,73 @@
         android:layout_alignParentEnd="true">
 
         <TextView
-            android:layout_alignParentLeft="true"
-            android:text="Rating:"
-            android:textSize="48sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:id="@+id/ProfilBrugernavn"
+            android:layout_marginTop="90dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Brugernavn"
+            android:textSize="48sp"/>
+
+        <!--<TextView-->
+            <!--android:layout_alignParentLeft="true"-->
+            <!--android:text="Rating:"-->
+            <!--android:textSize="48sp"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_below="@+id/ProfilBrugernavn"/>-->
 
         <TextView
-            android:layout_alignParentRight="true"
+            android:gravity="center"
             android:layout_marginRight="15dp"
             android:text="xxxx"
             android:textSize="48sp"
             android:id="@+id/RatingText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ProfilBrugernavn"/>
     </RelativeLayout>
 
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/RatingLayout"
+    android:layout_marginTop="75dp"
+    android:baselineAligned="false">
+<LinearLayout
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:id="@+id/Layout1"
+    android:layout_weight="1"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
     <Button style="@style/ButtonStyle"
         android:text="Registrer Spil"
-        android:id="@+id/RegGameButton"
-        android:layout_below="@+id/RatingLayout"
-        android:layout_marginTop="40dp"/>
-
+        android:id="@+id/RegGameButton"/>
     <Button style="@style/ButtonStyle"
-        android:text="Gamle Spil"
-        android:id="@+id/ReadMatchHistoryButton"
-        android:layout_below="@+id/RegGameButton"/>
+        android:text="Regler"
+        android:id="@+id/ReadRulesButton"/>
+
+</LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1">
 
     <Button style="@style/ButtonStyle"
         android:text="Rangliste"
-        android:id="@+id/ReadRankingsButton"
-        android:layout_below="@+id/ReadMatchHistoryButton"/>
+        android:id="@+id/ReadRankingsButton"/>
 
-    <Button style="@style/ButtonStyle"
-        android:text="Statistik"
-        android:id="@+id/ReadStatsButton"
-        android:layout_below="@+id/ReadRankingsButton"/>
+        <Button style="@style/ButtonStyle"
+            android:text="Profil"
+            android:id="@+id/ProfilePageButton"/>
 
-    <Button style="@style/ButtonStyle"
-        android:text="Regler"
-        android:id="@+id/ReadRulesButton"
-        android:layout_below="@+id/ReadStatsButton"/>
+</LinearLayout>
+
+</LinearLayout>
 
 
 </RelativeLayout>
