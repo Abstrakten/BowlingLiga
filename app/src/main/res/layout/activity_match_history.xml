@@ -2,7 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="svin.bowlingliga.MatchHistoryActivity">
+    tools:context="svin.bowlingliga.MatchHistoryActivity"
+    android:background="@drawable/baggrund">
 
 
     <ListView

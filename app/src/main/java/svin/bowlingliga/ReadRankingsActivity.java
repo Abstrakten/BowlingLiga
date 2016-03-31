@@ -53,7 +53,7 @@ public class ReadRankingsActivity extends AppCompatActivity {
 
                         playerList.add(p);
                     }
-                    ListView teamView = (ListView)findViewById(R.id.listView);
+                    ListView teamView = (ListView)findViewById(R.id.RanglisteListView);
                     PlayerListAdapter adapter = new PlayerListAdapter(ReadRankingsActivity.this, playerList);
                     teamView.setAdapter(adapter);
 

@@ -3,6 +3,7 @@
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/baggrund"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".LigaListen">
 
 
@@ -24,61 +25,38 @@
         <TextView
             android:layout_alignParentRight="true"
             android:layout_marginRight="15dp"
+            android:text="xxxx"
             android:textSize="48sp"
             android:id="@+id/RatingText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </RelativeLayout>
 
-    <Button
+    <Button style="@style/ButtonStyle"
         android:text="Registrer Spil"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/RegGameButton"
         android:layout_below="@+id/RatingLayout"
-        android:layout_marginTop="40dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"/>
+        android:layout_marginTop="40dp"/>
 
-    <Button
+    <Button style="@style/ButtonStyle"
         android:text="Gamle Spil"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/ReadMatchHistoryButton"
-        android:layout_below="@+id/RegGameButton"
-        android:layout_marginTop="25dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp" />
+        android:layout_below="@+id/RegGameButton"/>
 
-    <Button
+    <Button style="@style/ButtonStyle"
         android:text="Rangliste"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/ReadRankingsButton"
-        android:layout_below="@+id/ReadMatchHistoryButton"
-        android:layout_marginTop="25dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp" />
+        android:layout_below="@+id/ReadMatchHistoryButton"/>
 
-    <Button
+    <Button style="@style/ButtonStyle"
         android:text="Statistik"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/ReadStatsButton"
-        android:layout_below="@+id/ReadRankingsButton"
-        android:layout_marginTop="25dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp" />
+        android:layout_below="@+id/ReadRankingsButton"/>
 
-    <Button
+    <Button style="@style/ButtonStyle"
         android:text="Regler"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/ReadRulesButton"
-        android:layout_below="@+id/ReadStatsButton"
-        android:layout_marginTop="25dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"/>
+        android:layout_below="@+id/ReadStatsButton"/>
 
 
 </RelativeLayout>
