@@ -23,7 +23,7 @@
     <TextView
         android:id="@+id/FirstName"
         android:layout_marginTop="5dp"
-        android:text="First Name"
+        android:text="Username"
         android:layout_gravity="start"
         android:textSize="20dp"
         android:layout_width="fill_parent"

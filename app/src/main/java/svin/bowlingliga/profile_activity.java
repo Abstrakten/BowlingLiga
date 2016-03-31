@@ -27,7 +27,7 @@ public class profile_activity extends AppCompatActivity {
     Button captureProfilePic, saveChanges;
     ImageView profileConfig;
     private static final int CAMERA_PIC_REQUEST = 1337;
-    EditText FirstNameEdit, LastNameEdit, EmailEdit;
+    EditText FirstNameEdit, LastNameEdit;
     String fname;
     Bitmap ProfileImage, currentProfilePic;
     SharedPreferences ProfileData;
@@ -45,7 +45,6 @@ public class profile_activity extends AppCompatActivity {
         saveChanges = (Button) findViewById(R.id.saveChanges);
         FirstNameEdit = (EditText) findViewById(R.id.FirstNameEdit);
         LastNameEdit = (EditText) findViewById(R.id.LastNameEdit);
-        EmailEdit = (EditText) findViewById(R.id.EmailEdit);
 
         // File for saving profile data
         ProfileData = getSharedPreferences(fname, AppCompatActivity.MODE_PRIVATE);
@@ -58,10 +57,8 @@ public class profile_activity extends AppCompatActivity {
         // Setup views for profile text
         String FirstNameLoad = ProfileData.getString("FirstNamePut", "");
         String LastNameLoad = ProfileData.getString("LastNamePut", "");
-        String EmailLoad = ProfileData.getString("EmailHolderPut", "");
         FirstNameEdit.setText(FirstNameLoad);
         LastNameEdit.setText(LastNameLoad);
-        EmailEdit.setText(EmailLoad);
 
         // Load profile pic
 
@@ -141,11 +138,9 @@ public class profile_activity extends AppCompatActivity {
     public void saveProfile(View v) {
         String FirstNameText = FirstNameEdit.getText().toString();
         String LastNameText = LastNameEdit.getText().toString();
-        String EmailText = EmailEdit.getText().toString();
         SharedPreferences.Editor ProfileEditor = ProfileData.edit();
         ProfileEditor.putString("FirstNamePut", FirstNameText);
         ProfileEditor.putString("LastNamePut", LastNameText);
-        ProfileEditor.putString("EmailHolderPut", EmailText);
         ProfileEditor.apply();
 
         internalProfileStorage();
