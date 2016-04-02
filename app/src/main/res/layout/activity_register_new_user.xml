@@ -5,101 +5,198 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="svin.bowlingliga.RegisterNewUserActivity"
-    android:background="@drawable/baggrund">
+    android:background="@drawable/baggrund"
+    android:gravity="center">
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/newNameText"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="80dp" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
-        android:ems="10"
-        android:id="@+id/newEmailText"
-        android:layout_marginTop="152dp"
-        android:layout_below="@+id/newNameText"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:id="@+id/newPasswordText"
-        android:layout_below="@+id/newNameText"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="22dp" />
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center">
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:id="@+id/newPasswordCheckText"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        <!--<TextView-->
+            <!--android:id="@+id/navneTekst"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Navn"-->
+            <!--android:textAppearance="?android:attr/textAppearanceLarge"/>-->
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Opret Bruger"
-        android:id="@+id/CreateUserButton"
-        android:layout_below="@+id/newEmailText"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="46dp"
-        android:layout_alignRight="@+id/textView3"
-        android:layout_alignEnd="@+id/textView3" />
+        <TextView
+            android:id="@+id/OpretNyBruger"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Opret ny brurger"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_marginBottom="20dp"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Navn"
-        android:id="@+id/textView"
-        android:layout_alignBottom="@+id/newNameText"
-        android:layout_toRightOf="@+id/newNameText"
-        android:layout_toEndOf="@+id/newNameText" />
+        <EditText
+            android:id="@+id/newNameText"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:inputType="textPersonName"
+            android:layout_width="wrap_content"
+            android:background="@drawable/text_edit_style"
+            android:hint="Navn"
+            android:layout_marginBottom="15dp"
+            android:paddingLeft="8dp"
+            android:layout_height="wrap_content"
+            android:ems="10"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Password"
-        android:id="@+id/textView2"
-        android:layout_alignBottom="@+id/newPasswordText"
-        android:layout_alignLeft="@+id/textView"
-        android:layout_alignStart="@+id/textView" />
+        <!--<TextView-->
+            <!--android:id="@+id/passwordtekst"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Password"-->
+            <!--android:textAppearance="?android:attr/textAppearanceLarge"-->
+            <!--android:layout_weight="1"/>-->
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Password"
-        android:id="@+id/textView3"
-        android:layout_centerVertical="true"
-        android:layout_alignLeft="@+id/textView2"
-        android:layout_alignStart="@+id/textView2" />
+        <EditText
+            android:id="@+id/newPasswordText"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:inputType="textPassword"
+            android:layout_width="wrap_content"
+            android:background="@drawable/text_edit_style"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:paddingLeft="8dp"
+            android:layout_marginBottom="15dp"
+            android:ems="10"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="E-mail"
-        android:id="@+id/textView4"
-        android:layout_alignBottom="@+id/newEmailText"
-        android:layout_toRightOf="@+id/newEmailText"
-        android:layout_toEndOf="@+id/newEmailText" />
+        <!--<TextView-->
+        <!--android:id="@+id/gentagPasswordtekst"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Gentag Password"-->
+        <!--android:textAppearance="?android:attr/textAppearanceLarge"-->
+        <!--android:layout_weight="1"/>-->
+
+        <EditText
+            android:inputType="textPassword"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/newPasswordCheckText"
+            android:layout_width="wrap_content"
+            android:hint="Gentag Password"
+            android:paddingLeft="8dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/text_edit_style"
+            android:layout_height="wrap_content"
+            android:ems="10"/>
+
+        <!--<TextView-->
+            <!--android:id="@+id/emailTekst"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="E-mail"-->
+            <!--android:textAppearance="?android:attr/textAppearanceLarge"-->
+            <!--android:layout_weight="1"/>-->
+
+        <EditText
+            android:id="@+id/newEmailText"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_width="wrap_content"
+            android:inputType="textEmailAddress"
+            android:hint="E-mail"
+            android:paddingLeft="8dp"
+            android:background="@drawable/text_edit_style"
+            android:layout_height="wrap_content"
+            android:ems="10"/>
+
+        <Button style="@style/ButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Opret Bruger"
+            android:id="@+id/CreateUserButton"
+            android:layout_marginTop="20dp"
+            android:ems="10"
+            android:gravity="center"/>
+
+</LinearLayout>
+
+
+
+
+    <!--<EditText-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:inputType="textPersonName"-->
+        <!--android:ems="10"-->
+        <!--android:id="@+id/newNameText"-->
+        <!--android:layout_toRightOf="@+id/textView"-->
+        <!--android:layout_toStartOf="@+id/textView"-->
+        <!--android:layout_marginTop="80dp" />-->
+
+    <!--<EditText-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:inputType="textPassword"-->
+        <!--android:ems="10"-->
+        <!--android:id="@+id/newPasswordText"-->
+        <!--android:layout_below="@+id/newNameText"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--android:layout_alignParentStart="true"-->
+        <!--android:layout_marginTop="22dp" />-->
+
+    <!--<EditText-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:inputType="textPassword"-->
+        <!--android:ems="10"-->
+        <!--android:id="@+id/newPasswordCheckText"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--android:layout_alignParentStart="true" />-->
+
+    <!--<EditText-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:inputType="textEmailAddress"-->
+        <!--android:ems="10"-->
+        <!--android:id="@+id/newEmailText"-->
+        <!--android:layout_marginTop="152dp"-->
+        <!--android:layout_below="@+id/newNameText"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--android:layout_alignParentStart="true" />-->
+
+    <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:textAppearance="?android:attr/textAppearanceLarge"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:text="Navn"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:id="@+id/textView"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_alignParentTop="true"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_alignParentLeft="true"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_alignParentStart="true"/>&ndash;&gt;-->
+
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:textAppearance="?android:attr/textAppearanceLarge"-->
+        <!--android:text="Password"-->
+        <!--android:id="@+id/textView2"-->
+        <!--android:layout_alignBottom="@+id/newPasswordText"-->
+        <!--android:layout_alignLeft="@+id/textView"-->
+        <!--android:layout_alignStart="@+id/textView" />-->
+
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:textAppearance="?android:attr/textAppearanceLarge"-->
+        <!--android:text="Password"-->
+        <!--android:id="@+id/textView3"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--android:layout_toLeftOf="@+id/textView2"-->
+        <!--android:layout_toStartOf="@+id/textView2" />-->
+
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:textAppearance="?android:attr/textAppearanceLarge"-->
+        <!--android:text="E-mail"-->
+        <!--android:id="@+id/textView4"-->
+        <!--android:layout_alignBottom="@+id/newEmailText"-->
+        <!--android:layout_toLeftOf="@+id/newEmailText"-->
+        <!--android:layout_toStartOf="@+id/newEmailText" />-->
 
 </RelativeLayout>

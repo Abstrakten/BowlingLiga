@@ -8,6 +8,8 @@ import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,9 +22,11 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import svin.bowlingliga.Models.Player;
+
 public class profile_activity extends AppCompatActivity {
 
-
+    Player thisPlayer = new Player(9999,"JohnDoeFuckedUp",9999);
     // Variables
     Button captureProfilePic, saveChanges;
     ImageView profileConfig;
@@ -34,10 +38,13 @@ public class profile_activity extends AppCompatActivity {
     int i = 0;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_activity);
+
+        setTitle("Profil");
 
         // General views used
         captureProfilePic = (Button) findViewById(R.id.newProfilePic);
@@ -68,6 +75,38 @@ public class profile_activity extends AppCompatActivity {
         }
         if (ProfileImage != currentProfilePic)
             loadProfilePic();
+
+
+            Button ReadStatsButton = (Button) findViewById(R.id.ReadStatsButton);
+            ReadStatsButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(profile_activity.this, ReadStatsActivity.class);
+                    intent.putExtra("id", thisPlayer.getId());
+                    startActivity(intent);
+                }
+
+
+       });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_profile_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     @Override
